@@ -5,6 +5,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   noindex?: boolean;
   lang?: string;
 }
@@ -12,13 +13,23 @@ interface Props {
 const {
   title = "Diagram — Premium Self-Coaching & Focus System",
   description = "Diagram combines executive self-coaching with frictionless planning. From big dreams to focused daily action — all in one quiet, offline-first space.",
-  image = "/assets/branding/diagram-android/playstore.png",
+  image = "/assets/og-image.jpg",
+  imageAlt = "Diagram app — Turn Ambition into Daily Momentum",
   noindex = false,
   lang = "en",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://dgrm.app');
 const ogImageURL = new URL(image, Astro.site || 'https://dgrm.app');
+
+// hreflang alternate URL computation
+const isRu = lang === 'ru';
+const currentPath = Astro.url.pathname;
+// Derive counterpart path: /ru/foo → /foo and /foo → /ru/foo
+const enPath = isRu ? currentPath.replace(/^\/ru/, '') || '/' : currentPath;
+const ruPath = isRu ? currentPath : `/ru${currentPath === '/' ? '' : currentPath}`;
+const enURL = new URL(enPath, Astro.site || 'https://dgrm.app');
+const ruURL = new URL(ruPath, Astro.site || 'https://dgrm.app');
 ---
 
 <!doctype html>
@@ -28,6 +39,15 @@ const ogImageURL = new URL(image, Astro.site || 'https://dgrm.app');
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#090A0F" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- hreflang Alternate Links (EN ↔ RU) -->
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="ru" href={ruURL} />
+    <link rel="alternate" hreflang="x-default" href={enURL} />
+
+    <!-- Font Preloads (Self-Hosted — Zero External CDN) -->
+    <link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-bold.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Theme Initialization Script (Prevents FOUC) -->
     <script is:inline>
@@ -84,6 +104,9 @@ const ogImageURL = new URL(image, Astro.site || 'https://dgrm.app');
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:locale" content={lang === 'ru' ? 'ru_RU' : 'en_US'} />
 
     <!-- Twitter / X Cards -->
@@ -92,6 +115,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://dgrm.app');
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <!-- Schema.org SoftwareApplication JSON-LD -->
     <script type="application/ld+json" is:inline>
