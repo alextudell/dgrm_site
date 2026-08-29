@@ -25,14 +25,24 @@ The visual identity of `dgrm.app` is an exact mirror of the mobile app:
 * **Lavender / AI Glow:** `#A78BFA` (`text-accent-ai`, `bg-accent-ai`) — Diagram AI features, token badges, decomposition highlights.
 * **Success (Emerald):** `#10B981` (`text-success`) — Completed states, positive growth metrics.
 
-### 3. Text & Content Hierarchy
-* **Text Primary:** `#F8FAFC` (`text-text-primary`) — Headings, high-emphasis text (100% contrast).
-* **Text Secondary:** `#94A3B8` (`text-text-secondary`) — Body copy, subheadings, explanations (muted slate).
-* **Text Tertiary / Muted:** `#64748B` (`text-text-muted`) — Metadata, footer legal copy, disabled captions.
+### 3. Text & Content Hierarchy (Contrast Calibrated)
+* **Text Primary (`text-text-primary`):**
+  * *Dark Mode:* `#F8FAFC` (Slate-50 — 100% contrast, headings, active labels)
+  * *Light Mode:* `#090A0F` (Slate-950 — deep black, crisp contrast ~19:1)
+* **Text Secondary (`text-text-secondary`):**
+  * *Dark Mode:* `#94A3B8` (Slate-400 — muted slate, contrast ~7.5:1)
+  * *Light Mode:* `#334155` (Slate-700 — deep slate, high legibility, contrast ~9.5:1)
+* **Text Tertiary / Muted (`text-text-muted`):**
+  * *Dark Mode:* `#64748B` (Slate-500 — contrast ~4.6:1)
+  * *Light Mode:* `#64748B` (Slate-500 — WCAG AA compliant, contrast ~4.8:1)
 
 ### 4. Borders & Dividers
-* **Border Subtle:** `rgba(255, 255, 255, 0.08)` (`border-border-subtle`) — Default card outlines.
-* **Border Highlight:** `rgba(255, 255, 255, 0.16)` (`border-border-highlight`) — Card hovers and active outlines.
+* **Border Subtle (`border-border-subtle`):**
+  * *Dark Mode:* `rgba(255, 255, 255, 0.08)`
+  * *Light Mode:* `rgba(0, 0, 0, 0.08)`
+* **Border Highlight (`border-border-highlight`):**
+  * *Dark Mode:* `rgba(255, 255, 255, 0.16)`
+  * *Light Mode:* `rgba(0, 0, 0, 0.14)`
 
 ---
 
