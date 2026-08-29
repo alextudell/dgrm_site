@@ -16,153 +16,223 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
   data-scrolled="false"
   data-menu-open="false"
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 sm:h-14 flex items-center justify-between">
-    <!-- Brand Logo -->
-    <a 
-      href={homeUrl} 
-      class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg py-1 pr-3 shrink-0"
-      aria-label="Diagram Home"
-    >
-      <img 
-        src="/assets/branding/Svg/diagram-mark-lavender.svg" 
-        alt="Diagram Mark" 
-        class="w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:scale-105"
-        width="28"
-        height="28"
-      />
-      <span class="font-bold text-base sm:text-lg tracking-tight text-text-primary group-hover:text-primary transition-colors">
-        Diagram
-      </span>
-    </a>
-
-    <!-- Desktop Nav Links -->
-    <nav class="hidden md:flex items-center gap-8 text-[13px] font-medium text-text-secondary tracking-normal">
-      <a href={`${homeUrl}#stage`} class="hover:text-text-primary transition-colors">{t.nav.stage}</a>
-      <a href={`${homeUrl}#ai`} class="hover:text-text-primary transition-colors">{t.nav.aiCoach}</a>
-      <a href={`${homeUrl}#ecosystem`} class="hover:text-text-primary transition-colors">{t.nav.ecosystem}</a>
-      <a href={`${homeUrl}#faq`} class="hover:text-text-primary transition-colors">{t.nav.faq}</a>
-    </nav>
-
-    <!-- Right Controls: Language Text + Theme Icon + Mobile Trigger -->
-    <div class="flex items-center gap-3 sm:gap-4">
-      <!-- Minimalist Text Language Switcher -->
-      <div class="flex items-center gap-1.5 text-[13px] leading-none font-medium tracking-normal select-none">
-        <a 
-          href="/" 
-          class={`transition-colors duration-150 py-0.5 ${lang === 'en' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
-          title="English"
-          aria-label="Switch to English"
-        >
-          EN
-        </a>
-        <span class="text-text-muted/30 text-xs font-light select-none -translate-y-px">/</span>
-        <a 
-          href="/ru" 
-          class={`transition-colors duration-150 py-0.5 ${lang === 'ru' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
-          title="Русский"
-          aria-label="Переключить на русский"
-        >
-          RU
-        </a>
-      </div>
-
-      <!-- Separator Hairline (Desktop) -->
-      <div class="hidden sm:block w-px h-3 bg-border-subtle"></div>
-
-      <!-- Minimalist Theme Toggle Button (Optically Aligned) -->
-      <button 
-        type="button" 
-        id="theme-toggle-btn"
-        aria-label={t.nav.themeToggle}
-        class="w-7 h-7 -translate-y-px rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 focus:outline-none active:scale-90"
+  <!-- Top Navigation Bar Container -->
+  <div id="site-header-bar" class="site-header-bar relative z-50 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 sm:h-14 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a 
+        href={homeUrl} 
+        class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg py-1 pr-3 shrink-0"
+        aria-label="Diagram Home"
       >
-        <svg class="w-4 h-4 dark:hidden fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-        </svg>
-        <svg class="w-4 h-4 hidden dark:inline fill-none stroke-current stroke-2 text-amber-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
-      </button>
+        <img 
+          src="/assets/branding/Svg/diagram-mark-lavender.svg" 
+          alt="Diagram Mark" 
+          class="w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:scale-105"
+          width="28"
+          height="28"
+        />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-text-primary group-hover:text-primary transition-colors">
+          Diagram
+        </span>
+      </a>
 
-      <!-- Mobile Menu Trigger (Apple-style 2-line Morphing Icon) -->
-      <button
-        type="button"
-        id="mobile-menu-btn"
-        aria-expanded="false"
-        aria-controls="mobile-nav-drawer"
-        aria-label="Toggle navigation menu"
-        class="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all focus:outline-none"
-      >
-        <div class="w-4 h-3 flex flex-col justify-between items-center relative pointer-events-none">
-          <span id="burger-line-1" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
-          <span id="burger-line-2" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-[13px] font-medium text-text-secondary tracking-normal">
+        <a href={`${homeUrl}#stage`} class="hover:text-text-primary transition-colors">{t.nav.stage}</a>
+        <a href={`${homeUrl}#ai`} class="hover:text-text-primary transition-colors">{t.nav.aiCoach}</a>
+        <a href={`${homeUrl}#ecosystem`} class="hover:text-text-primary transition-colors">{t.nav.ecosystem}</a>
+        <a href={`${homeUrl}#faq`} class="hover:text-text-primary transition-colors">{t.nav.faq}</a>
+      </nav>
+
+      <!-- Right Controls: Language Text + Theme Icon + Mobile Trigger -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Minimalist Text Language Switcher -->
+        <div class="flex items-center gap-1.5 text-[13px] leading-none font-medium tracking-normal select-none">
+          <a 
+            href="/" 
+            class={`transition-colors duration-150 py-0.5 ${lang === 'en' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
+            title="English"
+            aria-label="Switch to English"
+          >
+            EN
+          </a>
+          <span class="text-text-muted/30 text-xs font-light select-none -translate-y-px">/</span>
+          <a 
+            href="/ru" 
+            class={`transition-colors duration-150 py-0.5 ${lang === 'ru' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
+            title="Русский"
+            aria-label="Переключить на русский"
+          >
+            RU
+          </a>
         </div>
-      </button>
+
+        <!-- Separator Hairline (Desktop) -->
+        <div class="hidden sm:block w-px h-3 bg-border-subtle"></div>
+
+        <!-- Minimalist Theme Toggle Button (Optically Aligned) -->
+        <button 
+          type="button" 
+          id="theme-toggle-btn"
+          aria-label={t.nav.themeToggle}
+          class="w-7 h-7 -translate-y-px rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 focus:outline-none active:scale-90"
+        >
+          <svg class="w-4 h-4 dark:hidden fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+          <svg class="w-4 h-4 hidden dark:inline fill-none stroke-current stroke-2 text-amber-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Trigger (Apple-style 2-line Morphing Icon) -->
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          aria-expanded="false"
+          aria-controls="mobile-nav-drawer"
+          aria-label="Toggle navigation menu"
+          class="md:hidden relative z-50 w-9 h-9 -mr-1 rounded-full flex items-center justify-center text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all focus:outline-none cursor-pointer"
+        >
+          <div class="w-4 h-3.5 flex flex-col justify-between items-center relative pointer-events-none">
+            <span id="burger-line-1" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+            <span id="burger-line-2" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Mobile Glass Navigation Drawer (Edge-to-Edge Full Viewport Overlay) -->
+  <!-- Mobile Fullscreen Navigation Drawer (100dvh Glass Overlay) -->
   <div
     id="mobile-nav-drawer"
-    class="md:hidden fixed inset-x-0 top-12 bottom-0 z-40 bg-[var(--header-glass-bg)] backdrop-blur-2xl border-t border-border-subtle px-6 py-8 flex flex-col justify-between transition-all duration-300 opacity-0 pointer-events-none -translate-y-2 overflow-y-auto"
+    class="md:hidden fixed inset-0 z-40 w-full h-[100dvh] bg-[var(--bg-canvas)]/95 backdrop-blur-2xl px-6 pt-16 pb-[max(env(safe-area-inset-bottom),1.75rem)] flex flex-col justify-between transition-all duration-300 opacity-0 pointer-events-none -translate-y-4 overflow-y-auto"
+    aria-hidden="true"
   >
-    <nav class="space-y-1">
-      <a
-        href={`${homeUrl}#stage`}
-        class="mobile-nav-link flex items-center justify-between py-4 text-xl font-semibold tracking-tight text-text-primary hover:text-primary transition-colors border-b border-border-subtle/50 group"
-      >
-        <span>{t.nav.stage}</span>
-        <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </a>
-      <a
-        href={`${homeUrl}#ai`}
-        class="mobile-nav-link flex items-center justify-between py-4 text-xl font-semibold tracking-tight text-text-primary hover:text-primary transition-colors border-b border-border-subtle/50 group"
-      >
-        <span>{t.nav.aiCoach}</span>
-        <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </a>
-      <a
-        href={`${homeUrl}#ecosystem`}
-        class="mobile-nav-link flex items-center justify-between py-4 text-xl font-semibold tracking-tight text-text-primary hover:text-primary transition-colors border-b border-border-subtle/50 group"
-      >
-        <span>{t.nav.ecosystem}</span>
-        <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </a>
-      <a
-        href={`${homeUrl}#faq`}
-        class="mobile-nav-link flex items-center justify-between py-4 text-xl font-semibold tracking-tight text-text-primary hover:text-primary transition-colors border-b border-border-subtle/50 group"
-      >
-        <span>{t.nav.faq}</span>
-        <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </a>
-    </nav>
+    <!-- Top Nav List with Big Touch Targets -->
+    <div class="pt-4 space-y-5">
+      <div class="flex items-center justify-between pb-2 border-b border-border-subtle/50">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-text-muted">
+          {lang === 'ru' ? 'Навигация' : 'Navigation'}
+        </span>
+        <span class="text-[11px] font-medium text-text-muted">
+          dgrm.app
+        </span>
+      </div>
 
-    <div class="pt-6 space-y-4">
+      <nav class="space-y-1">
+        <a
+          href={`${homeUrl}#stage`}
+          class="mobile-nav-link flex items-center justify-between py-3.5 text-2xl font-bold tracking-tight text-text-primary hover:text-primary active:scale-[0.98] transition-all border-b border-border-subtle/40 group"
+        >
+          <div class="flex flex-col">
+            <span>{t.nav.stage}</span>
+            <span class="text-xs font-normal text-text-muted mt-0.5 group-hover:text-text-secondary transition-colors">
+              {lang === 'ru' ? '01 · Петля продуктивности' : '01 · The Productivity Loop'}
+            </span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-text-muted group-hover:text-primary group-hover:bg-primary/10 transition-all">
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </a>
+
+        <a
+          href={`${homeUrl}#ai`}
+          class="mobile-nav-link flex items-center justify-between py-3.5 text-2xl font-bold tracking-tight text-text-primary hover:text-primary active:scale-[0.98] transition-all border-b border-border-subtle/40 group"
+        >
+          <div class="flex flex-col">
+            <span>{t.nav.aiCoach}</span>
+            <span class="text-xs font-normal text-text-muted mt-0.5 group-hover:text-text-secondary transition-colors">
+              {lang === 'ru' ? '02 · AI-декомпозиция целей' : '02 · AI Goal Decomposition'}
+            </span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-text-muted group-hover:text-primary group-hover:bg-primary/10 transition-all">
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </a>
+
+        <a
+          href={`${homeUrl}#ecosystem`}
+          class="mobile-nav-link flex items-center justify-between py-3.5 text-2xl font-bold tracking-tight text-text-primary hover:text-primary active:scale-[0.98] transition-all border-b border-border-subtle/40 group"
+        >
+          <div class="flex flex-col">
+            <span>{t.nav.ecosystem}</span>
+            <span class="text-xs font-normal text-text-muted mt-0.5 group-hover:text-text-secondary transition-colors">
+              {lang === 'ru' ? '03 · Офлайн-архитектура' : '03 · Offline-first Engine'}
+            </span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-text-muted group-hover:text-primary group-hover:bg-primary/10 transition-all">
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </a>
+
+        <a
+          href={`${homeUrl}#faq`}
+          class="mobile-nav-link flex items-center justify-between py-3.5 text-2xl font-bold tracking-tight text-text-primary hover:text-primary active:scale-[0.98] transition-all border-b border-border-subtle/40 group"
+        >
+          <div class="flex flex-col">
+            <span>{t.nav.faq}</span>
+            <span class="text-xs font-normal text-text-muted mt-0.5 group-hover:text-text-secondary transition-colors">
+              {lang === 'ru' ? '04 · Частые вопросы' : '04 · Questions & Answers'}
+            </span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-text-muted group-hover:text-primary group-hover:bg-primary/10 transition-all">
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Bottom Actions & Controls Section -->
+    <div class="pt-6 space-y-3">
+      <!-- Primary Conversion CTA -->
       <a
         href="mailto:support@dgrm.app?subject=Google%20Play%20Beta%20Access%20Request"
-        class="mobile-nav-link w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full btn-velvet-primary text-white font-semibold text-sm shadow-md"
+        class="mobile-nav-link w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full btn-velvet-primary text-white font-semibold text-sm shadow-md active:scale-95 transition-transform"
       >
         <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
           <path d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 0 1-.362-.485V2.3c0-.173.125-.34.362-.486zm11.24 11.241l2.128 2.129-11.455 6.613 9.327-8.742zm0-2.11L5.522 2.203l11.455 6.613-2.128 2.129zm1.055 1.055l3.87 2.235c1.077.622 1.077 1.638 0 2.26l-3.87 2.235-2.103-2.104 2.103-2.626z"/>
         </svg>
         <span>{t.hero.joinBeta}</span>
       </a>
+
+      <!-- Secondary iOS Waitlist CTA -->
+      <a
+        href="mailto:support@dgrm.app?subject=iOS%20TestFlight%20Invite%20Request"
+        class="mobile-nav-link w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full btn-secondary-tactile text-text-primary font-medium text-xs shadow-sm active:scale-95 transition-transform"
+      >
+        <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.04-1.82.92-2.88-.9.04-2 .6-2.64 1.36-.57.65-1.06 1.73-.93 2.77 1.01.08 2.03-.49 2.65-1.25z"/>
+        </svg>
+        <span>{t.hero.iosWaitlist}</span>
+      </a>
+
+      <!-- Micro Footer Info in Drawer -->
+      <div class="pt-2 flex items-center justify-between text-[11px] text-text-muted">
+        <span>© {new Date().getFullYear()} Diagram</span>
+        <div class="flex items-center gap-3">
+          <a href={`/${lang === 'ru' ? 'ru/' : ''}privacy`} class="hover:text-text-primary transition-colors">{t.nav.privacy}</a>
+          <span>·</span>
+          <a href={`/${lang === 'ru' ? 'ru/' : ''}terms`} class="hover:text-text-primary transition-colors">{t.nav.terms}</a>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
 <!-- Header & Mobile Drawer Client Script -->
 <script is:inline>
-  (function initHeader() {
+  function setupDiagramHeader() {
     const header = document.getElementById('site-header');
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const menuBtn = document.getElementById('mobile-menu-btn');
@@ -204,8 +274,9 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
       isOpen = true;
       menuBtn.setAttribute('aria-expanded', 'true');
       header?.setAttribute('data-menu-open', 'true');
-      drawer.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
-      drawer.classList.add('opacity-100', 'translate-y-0');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawer.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+      drawer.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
       if (line1 && line2) {
         line1.style.transform = 'translateY(5px) rotate(45deg)';
         line2.style.transform = 'translateY(-5px) rotate(-45deg)';
@@ -217,8 +288,9 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
       isOpen = false;
       menuBtn.setAttribute('aria-expanded', 'false');
       header?.setAttribute('data-menu-open', 'false');
-      drawer.classList.remove('opacity-100', 'translate-y-0');
-      drawer.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawer.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      drawer.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
       if (line1 && line2) {
         line1.style.transform = '';
         line2.style.transform = '';
@@ -227,6 +299,7 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
     }
 
     menuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       if (isOpen) {
         closeMenu();
@@ -242,7 +315,7 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
       });
     });
 
-    // Close on outside click
+    // Close on outside click (fallback if clicked near header edges)
     document.addEventListener('click', (e) => {
       if (isOpen && !drawer.contains(e.target) && !menuBtn.contains(e.target)) {
         closeMenu();
@@ -255,5 +328,11 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
         closeMenu();
       }
     });
-  })();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupDiagramHeader);
+  } else {
+    setupDiagramHeader();
+  }
 </script>
