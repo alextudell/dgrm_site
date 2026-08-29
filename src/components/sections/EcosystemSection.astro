@@ -85,12 +85,14 @@ const eco = t.ecosystem;
       </div>
 
       <!-- Cupertino-style Mobile Pagination Dots -->
-      <div id="ecosystem-dots" class="flex md:hidden justify-center items-center gap-1.5 pt-3 select-none">
+      <div id="ecosystem-dots" class="flex md:hidden justify-center items-center gap-2 pt-4 select-none" role="tablist" aria-label="Ecosystem Carousel Navigation">
         {eco.items.map((_, idx) => (
-          <span 
-            class={`carousel-dot h-1.5 rounded-full transition-all duration-300 ${idx === 0 ? 'w-5 bg-primary' : 'w-1.5 bg-border-highlight'}`}
+          <button 
+            type="button"
+            class={`carousel-dot h-2 rounded-full transition-all duration-300 focus:outline-none ${idx === 0 ? 'w-6 bg-primary' : 'w-2 bg-text-muted/30 dark:bg-white/25 hover:bg-text-muted/50'}`}
             data-carousel-dot={idx}
-          ></span>
+            aria-label={`Go to card ${idx + 1}`}
+          ></button>
         ))}
       </div>
     </div>
@@ -102,24 +104,47 @@ const eco = t.ecosystem;
   (function initEcoCarouselDots() {
     const carousel = document.getElementById('ecosystem-carousel');
     const dots = document.querySelectorAll('#ecosystem-dots [data-carousel-dot]');
-    if (!carousel || dots.length === 0) return;
+    const cards = carousel ? carousel.querySelectorAll('[data-carousel-card]') : [];
+    if (!carousel || dots.length === 0 || cards.length === 0) return;
 
-    function updateDots() {
-      const scrollLeft = carousel.scrollLeft;
-      const cardWidth = carousel.firstElementChild ? carousel.firstElementChild.offsetWidth : 280;
-      const activeIdx = Math.round(scrollLeft / cardWidth);
-
+    function setActiveDot(activeIdx) {
       dots.forEach((dot, idx) => {
         if (idx === activeIdx) {
-          dot.classList.remove('w-1.5', 'bg-border-highlight');
-          dot.classList.add('w-5', 'bg-primary');
+          dot.classList.remove('w-2', 'bg-text-muted/30', 'dark:bg-white/25');
+          dot.classList.add('w-6', 'bg-primary');
         } else {
-          dot.classList.remove('w-5', 'bg-primary');
-          dot.classList.add('w-1.5', 'bg-border-highlight');
+          dot.classList.remove('w-6', 'bg-primary');
+          dot.classList.add('w-2', 'bg-text-muted/30', 'dark:bg-white/25');
         }
       });
     }
 
+    function updateDots() {
+      const carouselCenter = carousel.scrollLeft + carousel.clientWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((card, idx) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(carouselCenter - cardCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIdx = idx;
+        }
+      });
+
+      setActiveDot(closestIdx);
+    }
+
     carousel.addEventListener('scroll', updateDots, { passive: true });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        const targetCard = cards[idx];
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+    });
   })();
 </script>
