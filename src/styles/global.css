@@ -36,6 +36,7 @@ html:not(.dark) {
   /* Glassmorphism Specs */
   --glass-bg: rgba(255, 255, 255, 0.88);
   --glass-elevated-bg: rgba(255, 255, 255, 0.96);
+  --header-glass-bg: rgba(248, 249, 250, 0.82);
   --glass-border: rgba(15, 23, 42, 0.08);
   --glass-elevated-border: rgba(15, 23, 42, 0.11);
   --glass-shadow: 0 0 0 1px rgba(15, 23, 42, 0.04), 0 4px 20px -4px rgba(15, 23, 42, 0.06), 0 1px 3px 0 rgba(15, 23, 42, 0.02);
@@ -85,6 +86,7 @@ html.dark {
   /* Glassmorphism Specs */
   --glass-bg: rgba(18, 21, 30, 0.72);
   --glass-elevated-bg: rgba(24, 29, 42, 0.85);
+  --header-glass-bg: rgba(9, 10, 15, 0.82);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-elevated-border: rgba(255, 255, 255, 0.14);
   --glass-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 16px 40px -10px rgba(0, 0, 0, 0.5);
@@ -193,6 +195,24 @@ html.dark {
   border: 1px solid var(--glass-elevated-border);
   box-shadow: var(--glass-elevated-shadow), var(--glass-elevated-highlight);
   transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Edge-to-Edge Navigation Header (Apple HIG Standard) */
+.site-header {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-header[data-scrolled="true"],
+.site-header[data-menu-open="true"] {
+  background-color: var(--header-glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 /* Soft-Premium Feature Card Rim Glow */
