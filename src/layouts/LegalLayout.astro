@@ -1,0 +1,71 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/navigation/Header.astro';
+import Footer from '../components/navigation/Footer.astro';
+import { translations, type SupportedLanguage } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  lastUpdated: string;
+  effectiveDate: string;
+  version: string;
+  lang?: SupportedLanguage;
+}
+
+const { title, description, lastUpdated, effectiveDate, version, lang = 'en' } = Astro.props;
+const t = translations[lang] || translations.en;
+---
+
+<BaseLayout title={`${title} — Diagram`} description={description} lang={lang}>
+  <Header t={t} lang={lang} />
+  
+  <main class="min-h-screen pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative">
+    <!-- Ambient Background Glow -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] diagram-glow-indigo pointer-events-none opacity-25"></div>
+
+    <article class="max-w-3xl mx-auto relative z-10">
+      <!-- Document Header -->
+      <header class="mb-12 pb-8 border-b border-border-subtle">
+        <a 
+          href={lang === 'ru' ? '/ru' : '/'} 
+          class="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-primary transition-colors mb-8 group"
+        >
+          <span class="transition-transform group-hover:-translate-x-1">←</span>
+          <span>{t.legal.backToHome}</span>
+        </a>
+        
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text-primary mb-4">
+          {title}
+        </h1>
+        
+        <div class="flex flex-wrap items-center gap-3 text-xs text-text-muted mt-4">
+          <span>{t.legal.effectiveDate} <strong class="text-text-secondary font-medium">{effectiveDate}</strong></span>
+          <span>•</span>
+          <span>{t.legal.lastUpdated} <strong class="text-text-secondary font-medium">{lastUpdated}</strong></span>
+          <span>•</span>
+          <span class="px-2.5 py-0.5 rounded-full bg-surface-soft border border-border-subtle text-primary font-medium">
+            {t.legal.version} {version}
+          </span>
+        </div>
+      </header>
+
+      <!-- Markdown Body -->
+      <div class="prose dark:prose-invert prose-slate max-w-none 
+                  prose-headings:text-text-primary prose-headings:font-bold prose-headings:tracking-tight
+                  prose-p:text-text-secondary prose-p:leading-relaxed
+                  prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-text-primary
+                  prose-ul:text-text-secondary
+                  prose-ol:text-text-secondary
+                  prose-li:my-1
+                  prose-table:border-collapse prose-table:border prose-table:border-border-subtle
+                  prose-th:bg-surface-elevated prose-th:p-3 prose-th:text-left prose-th:border prose-th:border-border-subtle
+                  prose-td:p-3 prose-td:border prose-td:border-border-subtle">
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <Footer t={t} lang={lang} />
+</BaseLayout>

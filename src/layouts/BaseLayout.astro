@@ -1,0 +1,115 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  lang?: string;
+}
+
+const {
+  title = "Diagram — Premium Self-Coaching & Focus System",
+  description = "Diagram combines executive self-coaching with frictionless planning. From big dreams to focused daily action — all in one quiet, offline-first space.",
+  image = "/assets/branding/diagram-android/playstore.png",
+  noindex = false,
+  lang = "en",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://dgrm.app');
+const ogImageURL = new URL(image, Astro.site || 'https://dgrm.app');
+---
+
+<!doctype html>
+<html lang={lang} class="dark scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#090A0F" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Theme Initialization Script (Prevents FOUC) -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Language Auto-Detection on Root -->
+    {lang === 'en' && (
+      <script is:inline>
+        (function() {
+          const userHasSetLang = localStorage.getItem('user_lang_selected');
+          const isRoot = window.location.pathname === '/' || window.location.pathname === '';
+          if (!userHasSetLang && isRoot) {
+            const browserLang = navigator.language || navigator.userLanguage || '';
+            if (browserLang.toLowerCase().startsWith('ru')) {
+              window.location.replace('/ru');
+            }
+          }
+        })();
+      </script>
+    )}
+
+    <!-- Primary SEO Meta -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+    <!-- Favicons & Manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- OpenGraph / Facebook / Telegram -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Diagram" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content={lang === 'ru' ? 'ru_RU' : 'en_US'} />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Schema.org SoftwareApplication JSON-LD -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Diagram",
+        "operatingSystem": "iOS, Android",
+        "applicationCategory": "ProductivityApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Premium self-coaching and goal achievement app based on the Goal → Plan → Action → Reflection loop.",
+        "url": "https://dgrm.app",
+        "author": {
+          "@type": "Organization",
+          "name": "Diagram Team",
+          "url": "https://dgrm.app"
+        }
+      }
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased overflow-x-hidden transition-colors duration-200">
+    <slot />
+  </body>
+</html>

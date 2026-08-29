@@ -1,0 +1,21 @@
+{
+  "name": "Diagram",
+  "short_name": "Diagram",
+  "description": "Premium self-coaching and executive focus system",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090A0F",
+  "theme_color": "#090A0F",
+  "icons": [
+    {
+      "src": "/assets/branding/Favicon/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/branding/Favicon/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

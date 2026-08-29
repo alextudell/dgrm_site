@@ -1,0 +1,103 @@
+---
+import type { Translations, SupportedLanguage } from '../../i18n/translations';
+
+interface Props {
+  t: Translations;
+  lang: SupportedLanguage;
+}
+
+const { t } = Astro.props;
+---
+
+<section id="faq" class="py-12 sm:py-20 px-3.5 sm:px-6 lg:px-8 border-t border-border-subtle relative overflow-hidden">
+  <!-- Ambient background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] ambient-glow-sapphire opacity-15 pointer-events-none blur-3xl"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10 space-y-8 sm:space-y-14">
+    <!-- Header -->
+    <div class="text-center space-y-3 sm:space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full diagram-glass border border-border-highlight text-primary text-xs font-bold uppercase tracking-widest">
+        <span>✦</span>
+        <span>{t.faq.eyebrow}</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary">
+        {t.faq.title}
+      </h2>
+      <p class="text-sm sm:text-lg text-text-secondary max-w-xl mx-auto leading-relaxed">
+        {t.faq.subtitle}
+      </p>
+    </div>
+
+    <!-- Unified Floating Glass Accordion -->
+    <div class="diagram-glass-elevated rounded-squircle-2xl border border-border-highlight shadow-2xl overflow-hidden divide-y divide-border-subtle">
+      {t.faq.items.map((faq) => (
+        <details class="faq-item group transition-colors duration-300 hover:bg-primary/[0.02] open:bg-primary/[0.03]">
+          <summary class="flex items-center justify-between p-5 sm:p-8 font-semibold text-text-primary cursor-pointer list-none select-none group-open:text-primary transition-colors">
+            <span class="text-base sm:text-lg pr-6 font-semibold tracking-tight leading-snug">{faq.q}</span>
+            <span class="faq-icon w-8 h-8 rounded-full diagram-glass border border-border-highlight flex items-center justify-center text-primary transition-transform duration-300 group-open:rotate-45 shrink-0 shadow-sm">
+              <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-content grid grid-rows-[0fr] opacity-0 group-open:grid-rows-[1fr] group-open:opacity-100 transition-[grid-template-rows,opacity] duration-300 ease-out">
+            <div class="overflow-hidden">
+              <div class="px-6 pb-6 sm:px-8 sm:pb-8 text-sm sm:text-base text-text-secondary leading-relaxed">
+                <p class="border-t border-border-subtle pt-4">
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFaqAccordion() {
+    const faqItems = document.querySelectorAll<HTMLDetailsElement>('#faq details.faq-item');
+    faqItems.forEach((details) => {
+      const summary = details.querySelector('summary');
+      const content = details.querySelector('.faq-content') as HTMLElement;
+      const icon = details.querySelector('.faq-icon') as HTMLElement;
+      if (!summary || !content) return;
+
+      summary.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (details.open) {
+          // Smooth Close Animation
+          content.style.gridTemplateRows = '0fr';
+          content.style.opacity = '0';
+          if (icon) icon.style.transform = 'rotate(0deg)';
+
+          const handleTransitionEnd = (evt: TransitionEvent) => {
+            if (evt.propertyName === 'grid-template-rows') {
+              content.removeEventListener('transitionend', handleTransitionEnd);
+              details.removeAttribute('open');
+              content.style.gridTemplateRows = '';
+              content.style.opacity = '';
+              if (icon) icon.style.transform = '';
+            }
+          };
+          content.addEventListener('transitionend', handleTransitionEnd);
+        } else {
+          // Smooth Open Animation
+          details.setAttribute('open', '');
+        }
+      });
+    });
+  }
+
+  // Initialize on load and on client-side navigations
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaqAccordion);
+  } else {
+    initFaqAccordion();
+  }
+  document.addEventListener('astro:page-load', initFaqAccordion);
+</script>
+

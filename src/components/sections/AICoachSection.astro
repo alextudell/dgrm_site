@@ -1,0 +1,96 @@
+---
+import type { Translations, SupportedLanguage } from '../../i18n/translations';
+
+interface Props {
+  t: Translations;
+  lang: SupportedLanguage;
+}
+
+const { t } = Astro.props;
+const coach = t.aiCoach;
+---
+
+<section id="ai" class="py-12 sm:py-20 px-3.5 sm:px-6 lg:px-8 border-t border-border-subtle relative overflow-hidden">
+  <!-- Ambient glow backdrop -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] ambient-glow-ai opacity-15 pointer-events-none blur-3xl"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10 space-y-8 sm:space-y-16">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full diagram-glass border border-border-highlight text-primary text-xs font-bold uppercase tracking-widest">
+        <span>✦</span>
+        <span>{coach.eyebrow}</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
+        {coach.title}
+      </h2>
+      <p class="text-sm sm:text-lg text-text-secondary leading-relaxed">
+        {coach.subtitle}
+      </p>
+    </div>
+
+    <!-- Mobile Horizontal Snap Carousel / Desktop 2x2 Grid -->
+    <div class="flex md:grid md:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto overflow-x-auto md:overflow-x-visible snap-x snap-mandatory no-scrollbar -mx-3.5 px-3.5 sm:mx-0 sm:px-0 py-2">
+      {coach.items.map((item) => (
+        <div class="w-[85%] sm:w-[70%] md:w-auto shrink-0 snap-center rounded-squircle-2xl diagram-glass feature-card-premium p-6 sm:p-10 border border-border-highlight flex flex-col justify-between space-y-6 group relative overflow-hidden">
+          
+          <div class="space-y-4">
+            <!-- Icon Badge -->
+            <div class="w-12 h-12 rounded-2xl bg-primary/10 dark:bg-primary/15 border border-primary/25 text-primary dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              {item.icon === 'mic' && (
+                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+              )}
+              {item.icon === 'journal' && (
+                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                  <path d="M6 6h10"/>
+                  <path d="M6 10h10"/>
+                  <path d="M6 14h6"/>
+                </svg>
+              )}
+              {item.icon === 'roadmap' && (
+                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 3h12l4 6-10 12L2 9z"/>
+                  <path d="M11 3 8 9l4 12 4-12-3-6"/>
+                  <path d="M2 9h20"/>
+                </svg>
+              )}
+              {item.icon === 'harmony' && (
+                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                  <path d="M2 12h20"/>
+                </svg>
+              )}
+            </div>
+
+            <!-- Tag & Title -->
+            <div class="space-y-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-primary dark:text-indigo-400 block">
+                {item.tag}
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight leading-snug">
+                {item.title}
+              </h3>
+            </div>
+
+            <!-- Clean Description -->
+            <p class="text-sm sm:text-base text-text-secondary leading-relaxed pt-1">
+              {item.desc}
+            </p>
+          </div>
+
+          <!-- Subtle indicator line -->
+          <div class="w-8 h-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-300"></div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

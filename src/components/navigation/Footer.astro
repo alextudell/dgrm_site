@@ -1,0 +1,60 @@
+---
+import type { Translations, SupportedLanguage } from '../../i18n/translations';
+
+interface Props {
+  t: Translations;
+  lang: SupportedLanguage;
+}
+
+const { t, lang } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border-subtle bg-canvas relative overflow-hidden mt-auto py-16 sm:py-20">
+  <!-- Subtle background glow -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 ambient-glow-sapphire pointer-events-none opacity-15 blur-3xl"></div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
+    
+    <!-- Brand & Tagline -->
+    <div class="space-y-3 flex flex-col items-center">
+      <a href={`/${lang === 'ru' ? 'ru' : ''}`} class="inline-flex items-center gap-2.5 group">
+        <img 
+          src="/assets/branding/Svg/diagram-mark-lavender.svg" 
+          alt="Diagram Logo" 
+          class="w-6 h-6 group-hover:scale-105 transition-transform duration-300"
+          width="24"
+          height="24"
+        />
+        <span class="font-bold text-lg tracking-tight text-text-primary">Diagram</span>
+      </a>
+      
+      <p class="text-sm text-text-secondary max-w-md mx-auto leading-relaxed">
+        {t.footer.tagline}
+      </p>
+    </div>
+
+    <!-- Navigation & Legal Links -->
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs sm:text-sm font-medium text-text-secondary">
+      <a href={`/${lang === 'ru' ? 'ru/' : ''}privacy`} class="hover:text-primary transition-colors">
+        {t.nav.privacy}
+      </a>
+      <span class="text-text-muted select-none opacity-60">•</span>
+      <a href={`/${lang === 'ru' ? 'ru/' : ''}terms`} class="hover:text-primary transition-colors">
+        {t.nav.terms}
+      </a>
+      <span class="text-text-muted select-none opacity-60">•</span>
+      <a href="mailto:support@dgrm.app" class="hover:text-primary transition-colors">
+        support@dgrm.app
+      </a>
+    </div>
+
+    <!-- Bottom Copyright Subline -->
+    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-xs text-text-muted">
+      <p>© {currentYear} Diagram. {t.footer.rights}</p>
+      <span class="hidden sm:inline text-text-muted opacity-60">•</span>
+      <p>{t.footer.subline}</p>
+    </div>
+
+  </div>
+</footer>

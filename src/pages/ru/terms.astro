@@ -1,0 +1,22 @@
+---
+import { getEntry } from 'astro:content';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const entry = await getEntry('legal', 'terms-ru');
+if (!entry) {
+  throw new Error('Terms of Use document not found in src/content/legal/terms-ru.md');
+}
+
+const { Content } = await entry.render();
+---
+
+<LegalLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  effectiveDate={entry.data.effectiveDate}
+  lastUpdated={entry.data.lastUpdated}
+  version={entry.data.version}
+  lang="ru"
+>
+  <Content />
+</LegalLayout>

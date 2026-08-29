@@ -1,0 +1,367 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   1. LIGHT THEME TOKENS (:root / html:not(.dark))
+   ========================================================================== */
+:root,
+html:not(.dark) {
+  color-scheme: light;
+
+  /* Canvas & Surfaces */
+  --bg-canvas: #F8F9FA;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F1F3F7;
+  --bg-surface-soft: #E5E9F0;
+
+  /* Typography Hierarchy */
+  --text-primary: #0B0E14;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-highlight: rgba(0, 0, 0, 0.14);
+
+  /* Glassmorphism Specs */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-elevated-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-elevated-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.04);
+  --glass-elevated-shadow: 0 20px 50px -12px rgba(99, 102, 241, 0.12), 0 30px 70px -15px rgba(15, 23, 42, 0.08);
+  --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  --glass-elevated-highlight: inset 0 1px 0 0 #FFFFFF;
+
+  /* Hero & Showcase Accents */
+  --headline-gradient: linear-gradient(135deg, #4338CA 0%, #6366F1 50%, #4F46E5 100%);
+  --insight-card-bg: rgba(15, 23, 42, 0.03);
+  --insight-card-border: rgba(15, 23, 42, 0.08);
+  --insight-card-text: #334155;
+  --halo-opacity: 0.20;
+
+  /* Tactile Secondary Button */
+  --btn-sec-bg: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  --btn-sec-border: rgba(15, 23, 42, 0.14);
+  --btn-sec-text: #0F172A;
+  --btn-sec-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.08), 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  --btn-sec-hover-bg: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+  --btn-sec-hover-border: rgba(99, 102, 241, 0.45);
+  --btn-sec-hover-text: #0B0E14;
+  --btn-sec-hover-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(99, 102, 241, 0.25);
+}
+
+/* ==========================================================================
+   2. DARK THEME TOKENS (html.dark Scope)
+   ========================================================================== */
+html.dark {
+  color-scheme: dark;
+
+  /* Canvas & Surfaces */
+  --bg-canvas: #090A0F;
+  --bg-surface: #12151E;
+  --bg-surface-elevated: #181D2A;
+  --bg-surface-soft: #202637;
+
+  /* Typography Hierarchy */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(255, 255, 255, 0.16);
+
+  /* Glassmorphism Specs */
+  --glass-bg: rgba(18, 21, 30, 0.72);
+  --glass-elevated-bg: rgba(24, 29, 42, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-elevated-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
+  --glass-elevated-shadow: 0 25px 60px -15px rgba(79, 70, 229, 0.18), 0 35px 90px -20px rgba(0, 0, 0, 0.75);
+  --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --glass-elevated-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+
+  /* Hero & Showcase Accents */
+  --headline-gradient: linear-gradient(135deg, #FFFFFF 0%, #E0E7FF 40%, #A5B4FC 100%);
+  --insight-card-bg: rgba(255, 255, 255, 0.04);
+  --insight-card-border: rgba(255, 255, 255, 0.10);
+  --insight-card-text: #E2E8F0;
+  --halo-opacity: 0.55;
+
+  /* Tactile Secondary Button */
+  --btn-sec-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  --btn-sec-border: rgba(255, 255, 255, 0.14);
+  --btn-sec-text: #F8FAFC;
+  --btn-sec-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+  --btn-sec-hover-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.06) 100%);
+  --btn-sec-hover-border: rgba(255, 255, 255, 0.32);
+  --btn-sec-hover-text: #FFFFFF;
+  --btn-sec-hover-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background-color: rgba(99, 102, 241, 0.28);
+    color: inherit;
+  }
+}
+
+/* Explicit token helper bindings */
+.text-text-primary {
+  color: var(--text-primary);
+}
+.text-text-secondary {
+  color: var(--text-secondary);
+}
+.text-text-muted {
+  color: var(--text-muted);
+}
+.bg-canvas {
+  background-color: var(--bg-canvas);
+}
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+.bg-surface-elevated {
+  background-color: var(--bg-surface-elevated);
+}
+.bg-surface-soft {
+  background-color: var(--bg-surface-soft);
+}
+.border-border-subtle {
+  border-color: var(--border-subtle);
+}
+.border-border-highlight {
+  border-color: var(--border-highlight);
+}
+
+/* Section Spacing & Rhythm Tokens */
+.section-standard {
+  padding-top: clamp(3.5rem, 6vw, 5rem);
+  padding-bottom: clamp(3.5rem, 6vw, 5rem);
+}
+.section-hero-bottom {
+  padding-bottom: clamp(3.5rem, 6vw, 5rem);
+}
+
+/* ==========================================================================
+   3. UNIFIED GLASSMORPHISM & DEPTH UTILITIES (TOKEN-POWERED)
+   ========================================================================== */
+.diagram-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.diagram-glass-elevated {
+  background: var(--glass-elevated-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-elevated-border);
+  box-shadow: var(--glass-elevated-shadow), var(--glass-elevated-highlight);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Soft-Premium Feature Card Rim Glow */
+.feature-card-premium {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+html.dark .feature-card-premium:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(99, 102, 241, 0.3),
+    0 10px 25px -5px rgba(99, 102, 241, 0.2),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+html:not(.dark) .feature-card-premium:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 
+    0 20px 40px -10px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(99, 102, 241, 0.2),
+    0 8px 20px -4px rgba(99, 102, 241, 0.12),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Ambient Lighting Shaders */
+.ambient-glow-sapphire {
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.25) 0%, rgba(99, 102, 241, 0.08) 45%, rgba(99, 102, 241, 0) 75%);
+}
+
+.ambient-glow-amber {
+  background: radial-gradient(circle at center, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.08) 45%, rgba(245, 158, 11, 0) 75%);
+}
+
+.ambient-glow-emerald {
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.08) 45%, rgba(16, 185, 129, 0) 75%);
+}
+
+.ambient-glow-ai {
+  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.25) 0%, rgba(168, 85, 247, 0.08) 45%, rgba(168, 85, 247, 0) 75%);
+}
+
+/* Device Mockup Refined Soft-Premium Titanium Frame */
+.device-frame-titanium {
+  position: relative;
+  border-radius: 46px;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+html.dark .device-frame-titanium {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(0, 0, 0, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 25px 60px -15px rgba(79, 70, 229, 0.28),
+    0 35px 80px -15px rgba(0, 0, 0, 0.85),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+html:not(.dark) .device-frame-titanium {
+  background: linear-gradient(155deg, #FFFFFF 0%, #F1F5F9 50%, #E2E8F0 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.9),
+    0 25px 60px -15px rgba(99, 102, 241, 0.18),
+    0 35px 70px -15px rgba(15, 23, 42, 0.14),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+/* Glass Screen Gloss Overlay */
+.screen-specular-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 36px;
+  pointer-events: none;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 30%, transparent 65%);
+  z-index: 20;
+}
+
+/* Stage Transition Keyframes */
+.stage-view-enter {
+  animation: stageEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Tactile Velvet Button */
+.btn-velvet-primary {
+  background: linear-gradient(180deg, #5B52F2 0%, #4338CA 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 8px 24px -4px rgba(79, 70, 229, 0.45),
+    0 2px 6px -1px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.btn-velvet-primary:hover {
+  background: linear-gradient(180deg, #6860FF 0%, #4F46E5 100%);
+  transform: translateY(-1.5px) scale(1.015);
+  box-shadow: 
+    0 16px 36px -4px rgba(99, 102, 241, 0.55),
+    0 4px 12px -2px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-velvet-primary:active {
+  transform: translateY(0.5px) scale(0.98);
+  box-shadow: 
+    0 4px 12px -2px rgba(79, 70, 229, 0.4),
+    inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Tactile Secondary Button (Token Powered) */
+.btn-secondary-tactile {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--btn-sec-bg);
+  border: 1px solid var(--btn-sec-border);
+  color: var(--btn-sec-text);
+  box-shadow: var(--btn-sec-shadow);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.2s ease;
+}
+
+.btn-secondary-tactile:hover {
+  background: var(--btn-sec-hover-bg);
+  border-color: var(--btn-sec-hover-border);
+  color: var(--btn-sec-hover-text);
+  transform: translateY(-1.5px) scale(1.015);
+  box-shadow: var(--btn-sec-hover-shadow);
+}
+
+.btn-secondary-tactile:active {
+  transform: translateY(0.5px) scale(0.98);
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Subtle Grid Accent Pattern */
+.bg-grid-subtle {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px);
+}
+
+/* Custom Scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* iOS Safe Areas */
+.safe-top {
+  padding-top: max(env(safe-area-inset-top), 1rem);
+}
+
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 2rem);
+}

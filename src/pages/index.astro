@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/navigation/Header.astro';
+import Footer from '../components/navigation/Footer.astro';
+
+import HeroStage from '../components/sections/HeroStage.astro';
+import AICoachSection from '../components/sections/AICoachSection.astro';
+import EcosystemSection from '../components/sections/EcosystemSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import CTASection from '../components/sections/CTASection.astro';
+
+import { translations } from '../i18n/translations';
+
+const t = translations.en;
+---
+
+<BaseLayout
+  title={t.meta.homeTitle}
+  description={t.meta.homeDescription}
+  lang="en"
+>
+  <Header t={t} lang="en" />
+
+  <main>
+    <HeroStage t={t} lang="en" />
+    <AICoachSection t={t} lang="en" />
+    <EcosystemSection t={t} lang="en" />
+    <FAQSection t={t} lang="en" />
+    <CTASection t={t} lang="en" />
+  </main>
+
+  <Footer t={t} lang="en" />
+</BaseLayout>

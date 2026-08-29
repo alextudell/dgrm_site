@@ -1,0 +1,92 @@
+---
+import type { Translations, SupportedLanguage } from '../../i18n/translations';
+
+interface Props {
+  t: Translations;
+  lang: SupportedLanguage;
+}
+
+const { t, lang } = Astro.props;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 px-3.5 sm:px-6 lg:px-8 pt-[max(env(safe-area-inset-top),0.75rem)] transition-all duration-300">
+  <div class="max-w-6xl mx-auto">
+    <div class="diagram-glass-elevated rounded-full px-3.5 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-2xl border border-border-highlight">
+      <!-- Brand Logo -->
+      <a href={`/${lang === 'ru' ? 'ru' : ''}`} class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full pr-4 shrink-0">
+        <img 
+          src="/assets/branding/Svg/diagram-mark-lavender.svg" 
+          alt="Diagram Mark" 
+          class="w-7 h-7 transition-transform duration-300 group-hover:scale-105"
+          width="28"
+          height="28"
+        />
+        <span class="font-bold text-lg tracking-tight text-text-primary group-hover:text-primary transition-colors">
+          Diagram
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-text-secondary">
+        <a href="#stage" class="hover:text-primary transition-colors">{t.nav.stage}</a>
+        <a href="#ai" class="hover:text-primary transition-colors">{t.nav.aiCoach}</a>
+        <a href="#ecosystem" class="hover:text-primary transition-colors">{t.nav.ecosystem}</a>
+        <a href="#faq" class="hover:text-primary transition-colors">{t.nav.faq}</a>
+      </nav>
+
+      <!-- Right Controls: Language + Theme + CTA -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Switcher Pill -->
+        <div class="flex items-center p-0.5 rounded-full diagram-glass border border-border-highlight text-xs font-semibold">
+          <a 
+            href="/" 
+            class={`px-2.5 py-1 rounded-full transition-all duration-200 ${lang === 'en' ? 'bg-primary text-white shadow-sm' : 'text-text-secondary hover:text-primary'}`}
+            title={t.nav.langEnLabel}
+          >
+            EN
+          </a>
+          <a 
+            href="/ru" 
+            class={`px-2.5 py-1 rounded-full transition-all duration-200 ${lang === 'ru' ? 'bg-primary text-white shadow-sm' : 'text-text-secondary hover:text-primary'}`}
+            title={t.nav.langRuLabel}
+          >
+            RU
+          </a>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button 
+          type="button" 
+          id="theme-toggle-btn"
+          aria-label={t.nav.themeToggle}
+          class="w-8 h-8 rounded-full flex items-center justify-center diagram-glass border border-border-highlight text-text-primary hover:scale-105 active:scale-95 transition-all"
+        >
+          <svg class="w-4 h-4 dark:hidden fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+          <svg class="w-4 h-4 hidden dark:inline fill-none stroke-current stroke-2 text-amber-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Theme Toggle Client Script -->
+<script is:inline>
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  }
+</script>
