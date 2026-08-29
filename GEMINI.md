@@ -50,3 +50,4 @@
 7. [Responsive & Adaptive Protocol (`.agents/rules/Responsive-And-Adaptive-Protocol.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Responsive-And-Adaptive-Protocol.md)
 8. [Copywriting & Tone of Voice (`.agents/rules/Copywriting-And-Tone-Of-Voice.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Copywriting-And-Tone-Of-Voice.md)
 9. [Deployment & CI/CD (`.agents/rules/Deployment-And-CI-CD.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Deployment-And-CI-CD.md)
+10. [Motion & Animation Protocol (`.agents/rules/Motion-And-Animation-Tokens.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Motion-And-Animation-Tokens.md)

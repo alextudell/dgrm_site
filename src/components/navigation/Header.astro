@@ -11,9 +11,9 @@ const { t, lang } = Astro.props;
 
 <header class="fixed top-0 left-0 right-0 z-50 px-3.5 sm:px-6 lg:px-8 pt-[max(env(safe-area-inset-top),0.75rem)] transition-all duration-300">
   <div class="max-w-6xl mx-auto">
-    <div class="diagram-glass-elevated rounded-full px-3.5 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-2xl border border-border-highlight">
+    <div class="diagram-glass-elevated rounded-full px-3.5 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-2xl border border-border-highlight relative z-50">
       <!-- Brand Logo -->
-      <a href={`/${lang === 'ru' ? 'ru' : ''}`} class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full pr-4 shrink-0">
+      <a href={`/${lang === 'ru' ? 'ru' : ''}`} class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full pr-2 sm:pr-4 shrink-0">
         <img 
           src="/assets/branding/Svg/diagram-mark-lavender.svg" 
           alt="Diagram Mark" 
@@ -34,21 +34,21 @@ const { t, lang } = Astro.props;
         <a href="#faq" class="hover:text-primary transition-colors">{t.nav.faq}</a>
       </nav>
 
-      <!-- Right Controls: Language + Theme + CTA -->
+      <!-- Right Controls: Language + Theme + Mobile Menu Trigger -->
       <div class="flex items-center gap-2 sm:gap-3">
         <!-- Language Switcher Pill -->
         <div class="flex items-center p-0.5 rounded-full diagram-glass border border-border-highlight text-xs font-semibold">
           <a 
             href="/" 
             class={`px-2.5 py-1 rounded-full transition-all duration-200 ${lang === 'en' ? 'bg-primary text-white shadow-sm' : 'text-text-secondary hover:text-primary'}`}
-            title={t.nav.langEnLabel}
+            title="English"
           >
             EN
           </a>
           <a 
             href="/ru" 
             class={`px-2.5 py-1 rounded-full transition-all duration-200 ${lang === 'ru' ? 'bg-primary text-white shadow-sm' : 'text-text-secondary hover:text-primary'}`}
-            title={t.nav.langRuLabel}
+            title="Русский"
           >
             RU
           </a>
@@ -69,24 +69,166 @@ const { t, lang } = Astro.props;
             <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
           </svg>
         </button>
+
+        <!-- Mobile Drawer Toggle Button (Apple-style 44x44 touch target) -->
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          aria-expanded="false"
+          aria-controls="mobile-nav-drawer"
+          aria-label="Toggle navigation menu"
+          class="md:hidden w-8 h-8 rounded-full flex items-center justify-center diagram-glass border border-border-highlight text-text-primary hover:scale-105 active:scale-95 transition-all"
+        >
+          <!-- Hamburger Icon -->
+          <svg id="menu-icon-bars" class="w-4 h-4 stroke-current fill-none stroke-2 transition-transform duration-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+          <!-- Close Icon -->
+          <svg id="menu-icon-close" class="w-4 h-4 stroke-current fill-none stroke-2 hidden transition-transform duration-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile Glass Navigation Drawer -->
+    <div
+      id="mobile-nav-drawer"
+      class="md:hidden fixed inset-x-3.5 top-[calc(max(env(safe-area-inset-top),0.75rem)+3.75rem)] z-40 transition-all duration-300 ease-out origin-top transform scale-95 opacity-0 pointer-events-none"
+    >
+      <nav class="diagram-glass-elevated rounded-squircle-2xl border border-border-highlight shadow-2xl p-4 sm:p-6 space-y-3 backdrop-blur-3xl ring-1 ring-white/10">
+        <div class="space-y-1">
+          <a
+            href="#stage"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-primary/10 text-text-primary font-semibold text-base transition-colors group"
+          >
+            <span class="group-hover:text-primary transition-colors">{t.nav.stage}</span>
+            <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+          <a
+            href="#ai"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-primary/10 text-text-primary font-semibold text-base transition-colors group"
+          >
+            <span class="group-hover:text-primary transition-colors">{t.nav.aiCoach}</span>
+            <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+          <a
+            href="#ecosystem"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-primary/10 text-text-primary font-semibold text-base transition-colors group"
+          >
+            <span class="group-hover:text-primary transition-colors">{t.nav.ecosystem}</span>
+            <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+          <a
+            href="#faq"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-primary/10 text-text-primary font-semibold text-base transition-colors group"
+          >
+            <span class="group-hover:text-primary transition-colors">{t.nav.faq}</span>
+            <svg class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="pt-2 border-t border-border-subtle">
+          <a
+            href="mailto:support@dgrm.app?subject=Google%20Play%20Beta%20Access%20Request"
+            class="mobile-nav-link w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full btn-velvet-primary text-white font-semibold text-sm shadow-md"
+          >
+            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 0 1-.362-.485V2.3c0-.173.125-.34.362-.486zm11.24 11.241l2.128 2.129-11.455 6.613 9.327-8.742zm0-2.11L5.522 2.203l11.455 6.613-2.128 2.129zm1.055 1.055l3.87 2.235c1.077.622 1.077 1.638 0 2.26l-3.87 2.235-2.103-2.104 2.103-2.626z"/>
+            </svg>
+            <span>{t.hero.joinBeta}</span>
+          </a>
+        </div>
+      </nav>
     </div>
   </div>
 </header>
 
-<!-- Theme Toggle Client Script -->
+<!-- Header & Mobile Drawer Client Script -->
 <script is:inline>
-  const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      if (isDark) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
+  (function initHeader() {
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    }
+
+    // Mobile Menu Drawer
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const iconBars = document.getElementById('menu-icon-bars');
+    const iconClose = document.getElementById('menu-icon-close');
+    const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+    if (!menuBtn || !drawer) return;
+
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      menuBtn.setAttribute('aria-expanded', 'true');
+      drawer.classList.remove('scale-95', 'opacity-0', 'pointer-events-none');
+      drawer.classList.add('scale-100', 'opacity-100');
+      if (iconBars) iconBars.classList.add('hidden');
+      if (iconClose) iconClose.classList.remove('hidden');
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      menuBtn.setAttribute('aria-expanded', 'false');
+      drawer.classList.remove('scale-100', 'opacity-100');
+      drawer.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
+      if (iconBars) iconBars.classList.remove('hidden');
+      if (iconClose) iconClose.classList.add('hidden');
+    }
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isOpen) {
+        closeMenu();
       } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+        openMenu();
       }
     });
-  }
+
+    // Close on link click
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (isOpen && !drawer.contains(e.target) && !menuBtn.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+      }
+    });
+  })();
 </script>

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/navigation/Header.astro';
 import Footer from '../components/navigation/Footer.astro';
+import StickyCTA from '../components/navigation/StickyCTA.astro';
 
 import HeroStage from '../components/sections/HeroStage.astro';
 import AICoachSection from '../components/sections/AICoachSection.astro';
@@ -15,8 +16,8 @@ const t = translations.en;
 ---
 
 <BaseLayout
-  title={t.meta.homeTitle}
-  description={t.meta.homeDescription}
+  title="Diagram — Offline-First Goal Tracker, Daily Planner & Journal"
+  description="An offline-first productivity app for goal planning and daily focus. Connect your roadmap with today's actions, habit tracking, and personal reflection journal."
   lang="en"
 >
   <Header t={t} lang="en" />
@@ -30,4 +31,5 @@ const t = translations.en;
   </main>
 
   <Footer t={t} lang="en" />
+  <StickyCTA t={t} lang="en" />
 </BaseLayout>

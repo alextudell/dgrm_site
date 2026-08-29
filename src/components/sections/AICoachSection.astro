@@ -31,66 +31,111 @@ const coach = t.aiCoach;
     </div>
 
     <!-- Mobile Horizontal Snap Carousel / Desktop 2x2 Grid -->
-    <div class="flex md:grid md:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto overflow-x-auto md:overflow-x-visible snap-x snap-mandatory no-scrollbar -mx-3.5 px-3.5 sm:mx-0 sm:px-0 py-2">
-      {coach.items.map((item) => (
-        <div class="w-[85%] sm:w-[70%] md:w-auto shrink-0 snap-center rounded-squircle-2xl diagram-glass feature-card-premium p-6 sm:p-10 border border-border-highlight flex flex-col justify-between space-y-6 group relative overflow-hidden">
-          
-          <div class="space-y-4">
-            <!-- Icon Badge -->
-            <div class="w-12 h-12 rounded-2xl bg-primary/10 dark:bg-primary/15 border border-primary/25 text-primary dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-              {item.icon === 'mic' && (
-                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                  <line x1="12" y1="19" x2="12" y2="22"/>
-                </svg>
-              )}
-              {item.icon === 'journal' && (
-                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
-                  <path d="M6 6h10"/>
-                  <path d="M6 10h10"/>
-                  <path d="M6 14h6"/>
-                </svg>
-              )}
-              {item.icon === 'roadmap' && (
-                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h12l4 6-10 12L2 9z"/>
-                  <path d="M11 3 8 9l4 12 4-12-3-6"/>
-                  <path d="M2 9h20"/>
-                </svg>
-              )}
-              {item.icon === 'harmony' && (
-                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-                  <path d="M2 12h20"/>
-                </svg>
-              )}
+    <div>
+      <div 
+        id="ai-coach-carousel"
+        class="flex md:grid md:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto overflow-x-auto md:overflow-x-visible snap-x snap-mandatory no-scrollbar -mx-3.5 px-3.5 sm:mx-0 sm:px-0 py-2 scroll-smooth"
+        style="-webkit-overflow-scrolling: touch;"
+      >
+        {coach.items.map((item, index) => (
+          <div 
+            data-carousel-card={index}
+            class="w-[85%] sm:w-[70%] md:w-auto shrink-0 snap-center rounded-squircle-2xl diagram-glass feature-card-premium p-6 sm:p-10 border border-border-highlight flex flex-col justify-between space-y-6 group relative overflow-hidden"
+          >
+            
+            <div class="space-y-4">
+              <!-- Icon Badge -->
+              <div class="w-12 h-12 rounded-2xl bg-primary/10 dark:bg-primary/15 border border-primary/25 text-primary dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                {item.icon === 'mic' && (
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                  </svg>
+                )}
+                {item.icon === 'journal' && (
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                    <path d="M6 6h10"/>
+                    <path d="M6 10h10"/>
+                    <path d="M6 14h6"/>
+                  </svg>
+                )}
+                {item.icon === 'roadmap' && (
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h12l4 6-10 12L2 9z"/>
+                    <path d="M11 3 8 9l4 12 4-12-3-6"/>
+                    <path d="M2 9h20"/>
+                  </svg>
+                )}
+                {item.icon === 'harmony' && (
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                    <path d="M2 12h20"/>
+                  </svg>
+                )}
+              </div>
+
+              <!-- Tag & Title -->
+              <div class="space-y-1.5">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-primary dark:text-indigo-400 block">
+                  {item.tag}
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight leading-snug">
+                  {item.title}
+                </h3>
+              </div>
+
+              <!-- Clean Description -->
+              <p class="text-sm sm:text-base text-text-secondary leading-relaxed pt-1">
+                {item.desc}
+              </p>
             </div>
 
-            <!-- Tag & Title -->
-            <div class="space-y-1.5">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-primary dark:text-indigo-400 block">
-                {item.tag}
-              </span>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight leading-snug">
-                {item.title}
-              </h3>
-            </div>
+            <!-- Subtle indicator line -->
+            <div class="w-8 h-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-300"></div>
 
-            <!-- Clean Description -->
-            <p class="text-sm sm:text-base text-text-secondary leading-relaxed pt-1">
-              {item.desc}
-            </p>
           </div>
+        ))}
+      </div>
 
-          <!-- Subtle indicator line -->
-          <div class="w-8 h-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-300"></div>
-
-        </div>
-      ))}
+      <!-- Cupertino-style Mobile Pagination Dots -->
+      <div id="ai-coach-dots" class="flex md:hidden justify-center items-center gap-1.5 pt-3 select-none">
+        {coach.items.map((_, idx) => (
+          <span 
+            class={`carousel-dot h-1.5 rounded-full transition-all duration-300 ${idx === 0 ? 'w-5 bg-primary' : 'w-1.5 bg-border-highlight'}`}
+            data-carousel-dot={idx}
+          ></span>
+        ))}
+      </div>
     </div>
 
   </div>
 </section>
+
+<script is:inline>
+  (function initAiCarouselDots() {
+    const carousel = document.getElementById('ai-coach-carousel');
+    const dots = document.querySelectorAll('#ai-coach-dots [data-carousel-dot]');
+    if (!carousel || dots.length === 0) return;
+
+    function updateDots() {
+      const scrollLeft = carousel.scrollLeft;
+      const cardWidth = carousel.firstElementChild ? carousel.firstElementChild.offsetWidth : 280;
+      const activeIdx = Math.round(scrollLeft / cardWidth);
+
+      dots.forEach((dot, idx) => {
+        if (idx === activeIdx) {
+          dot.classList.remove('w-1.5', 'bg-border-highlight');
+          dot.classList.add('w-5', 'bg-primary');
+        } else {
+          dot.classList.remove('w-5', 'bg-primary');
+          dot.classList.add('w-1.5', 'bg-border-highlight');
+        }
+      });
+    }
+
+    carousel.addEventListener('scroll', updateDots, { passive: true });
+  })();
+</script>

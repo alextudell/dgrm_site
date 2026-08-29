@@ -9,6 +9,15 @@
 html:not(.dark) {
   color-scheme: light;
 
+  /* Motion Physics Tokens (Apple HIG Standards) */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-smooth: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-tactile: cubic-bezier(0.2, 0, 0, 1);
+  --duration-instant: 150ms;
+  --duration-tactile: 250ms;
+  --duration-flow: 450ms;
+  --duration-cinematic: 700ms;
+
   /* Canvas & Surfaces */
   --bg-canvas: #F8F9FA;
   --bg-surface: #FFFFFF;
@@ -229,33 +238,35 @@ html:not(.dark) .feature-card-premium:hover {
   background: radial-gradient(circle at center, rgba(168, 85, 247, 0.25) 0%, rgba(168, 85, 247, 0.08) 45%, rgba(168, 85, 247, 0) 75%);
 }
 
-/* Device Mockup Refined Soft-Premium Titanium Frame */
-.device-frame-titanium {
-  position: relative;
-  border-radius: 46px;
-  padding: 8px;
-  box-sizing: border-box;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
-}
+/* Device Mockup Refined Soft-Premium Titanium Frame (Tablet & Desktop Only) */
+@media (min-width: 640px) {
+  .device-frame-titanium {
+    position: relative;
+    border-radius: 46px;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  }
 
-html.dark .device-frame-titanium {
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(0, 0, 0, 0.6) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 25px 60px -15px rgba(79, 70, 229, 0.28),
-    0 35px 80px -15px rgba(0, 0, 0, 0.85),
-    inset 0 1px 1px rgba(255, 255, 255, 0.35);
-}
+  html.dark .device-frame-titanium {
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(0, 0, 0, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 25px 60px -15px rgba(79, 70, 229, 0.28),
+      0 35px 80px -15px rgba(0, 0, 0, 0.85),
+      inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  }
 
-html:not(.dark) .device-frame-titanium {
-  background: linear-gradient(155deg, #FFFFFF 0%, #F1F5F9 50%, #E2E8F0 100%);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.9),
-    0 25px 60px -15px rgba(99, 102, 241, 0.18),
-    0 35px 70px -15px rgba(15, 23, 42, 0.14),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
+  html:not(.dark) .device-frame-titanium {
+    background: linear-gradient(155deg, #FFFFFF 0%, #F1F5F9 50%, #E2E8F0 100%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.9),
+      0 25px 60px -15px rgba(99, 102, 241, 0.18),
+      0 35px 70px -15px rgba(15, 23, 42, 0.14),
+      inset 0 1px 2px rgba(255, 255, 255, 1);
+  }
 }
 
 /* Glass Screen Gloss Overlay */
@@ -364,4 +375,14 @@ html:not(.dark) .device-frame-titanium {
 
 .safe-bottom {
   padding-bottom: max(env(safe-area-inset-bottom), 2rem);
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

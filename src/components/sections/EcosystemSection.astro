@@ -31,53 +31,98 @@ const eco = t.ecosystem;
     </div>
 
     <!-- Mobile Horizontal Snap Carousel / Desktop 3-Column Grid -->
-    <div class="flex md:grid md:grid-cols-3 gap-4 sm:gap-8 max-w-6xl mx-auto overflow-x-auto md:overflow-x-visible snap-x snap-mandatory no-scrollbar -mx-3.5 px-3.5 sm:mx-0 sm:px-0 py-2">
-      {eco.items.map((item) => (
-        <div class="w-[85%] sm:w-[70%] md:w-auto shrink-0 snap-center rounded-squircle-2xl diagram-glass feature-card-premium p-6 sm:p-9 border border-border-highlight flex flex-col justify-between space-y-6 group relative overflow-hidden">
-          
-          <div class="space-y-4">
-            <!-- Icon Badge -->
-            <div class="w-12 h-12 rounded-2xl bg-primary/10 dark:bg-primary/15 border border-primary/25 text-primary dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-              {item.icon === 'flow' && (
-                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-              )}
-              {item.icon === 'offline' && (
-                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
-                </svg>
-              )}
-              {item.icon === 'sync' && (
-                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
-                </svg>
-              )}
+    <div>
+      <div 
+        id="ecosystem-carousel"
+        class="flex md:grid md:grid-cols-3 gap-4 sm:gap-8 max-w-6xl mx-auto overflow-x-auto md:overflow-x-visible snap-x snap-mandatory no-scrollbar -mx-3.5 px-3.5 sm:mx-0 sm:px-0 py-2 scroll-smooth"
+        style="-webkit-overflow-scrolling: touch;"
+      >
+        {eco.items.map((item, index) => (
+          <div 
+            data-carousel-card={index}
+            class="w-[85%] sm:w-[70%] md:w-auto shrink-0 snap-center rounded-squircle-2xl diagram-glass feature-card-premium p-6 sm:p-9 border border-border-highlight flex flex-col justify-between space-y-6 group relative overflow-hidden"
+          >
+            
+            <div class="space-y-4">
+              <!-- Icon Badge -->
+              <div class="w-12 h-12 rounded-2xl bg-primary/10 dark:bg-primary/15 border border-primary/25 text-primary dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                {item.icon === 'flow' && (
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                    <path d="m9 12 2 2 4-4"/>
+                  </svg>
+                )}
+                {item.icon === 'offline' && (
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+                  </svg>
+                )}
+                {item.icon === 'sync' && (
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                  </svg>
+                )}
+              </div>
+
+              <!-- Tag & Title -->
+              <div class="space-y-1.5">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-primary dark:text-indigo-400 block">
+                  {item.tag}
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight leading-snug">
+                  {item.title}
+                </h3>
+              </div>
+
+              <!-- Clean Description -->
+              <p class="text-sm sm:text-base text-text-secondary leading-relaxed pt-1">
+                {item.desc}
+              </p>
             </div>
 
-            <!-- Tag & Title -->
-            <div class="space-y-1.5">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-primary dark:text-indigo-400 block">
-                {item.tag}
-              </span>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight leading-snug">
-                {item.title}
-              </h3>
-            </div>
+            <!-- Subtle indicator line -->
+            <div class="w-8 h-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-300"></div>
 
-            <!-- Clean Description -->
-            <p class="text-sm sm:text-base text-text-secondary leading-relaxed pt-1">
-              {item.desc}
-            </p>
           </div>
+        ))}
+      </div>
 
-          <!-- Subtle indicator line -->
-          <div class="w-8 h-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-300"></div>
-
-        </div>
-      ))}
+      <!-- Cupertino-style Mobile Pagination Dots -->
+      <div id="ecosystem-dots" class="flex md:hidden justify-center items-center gap-1.5 pt-3 select-none">
+        {eco.items.map((_, idx) => (
+          <span 
+            class={`carousel-dot h-1.5 rounded-full transition-all duration-300 ${idx === 0 ? 'w-5 bg-primary' : 'w-1.5 bg-border-highlight'}`}
+            data-carousel-dot={idx}
+          ></span>
+        ))}
+      </div>
     </div>
 
   </div>
 </section>
+
+<script is:inline>
+  (function initEcoCarouselDots() {
+    const carousel = document.getElementById('ecosystem-carousel');
+    const dots = document.querySelectorAll('#ecosystem-dots [data-carousel-dot]');
+    if (!carousel || dots.length === 0) return;
+
+    function updateDots() {
+      const scrollLeft = carousel.scrollLeft;
+      const cardWidth = carousel.firstElementChild ? carousel.firstElementChild.offsetWidth : 280;
+      const activeIdx = Math.round(scrollLeft / cardWidth);
+
+      dots.forEach((dot, idx) => {
+        if (idx === activeIdx) {
+          dot.classList.remove('w-1.5', 'bg-border-highlight');
+          dot.classList.add('w-5', 'bg-primary');
+        } else {
+          dot.classList.remove('w-5', 'bg-primary');
+          dot.classList.add('w-1.5', 'bg-border-highlight');
+        }
+      });
+    }
+
+    carousel.addEventListener('scroll', updateDots, { passive: true });
+  })();
+</script>

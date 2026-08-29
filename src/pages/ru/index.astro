@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/navigation/Header.astro';
 import Footer from '../../components/navigation/Footer.astro';
+import StickyCTA from '../../components/navigation/StickyCTA.astro';
 
 import HeroStage from '../../components/sections/HeroStage.astro';
 import AICoachSection from '../../components/sections/AICoachSection.astro';
@@ -30,4 +31,5 @@ const t = translations.ru;
   </main>
 
   <Footer t={t} lang="ru" />
+  <StickyCTA t={t} lang="ru" />
 </BaseLayout>

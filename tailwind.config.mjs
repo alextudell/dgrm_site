@@ -60,6 +60,17 @@ export default {
       fontFamily: {
         sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
       },
+      transitionTimingFunction: {
+        'spring': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'apple-smooth': 'cubic-bezier(0.32, 0.72, 0, 1)',
+        'tactile': 'cubic-bezier(0.2, 0, 0, 1)',
+      },
+      transitionDuration: {
+        'instant': '150ms',
+        'tactile': '250ms',
+        'flow': '450ms',
+        'cinematic': '700ms',
+      },
     },
   },
   plugins: [typography],
