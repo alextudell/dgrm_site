@@ -1,4 +1,4 @@
-﻿# Mobile Architecture & Privacy Ground Truth (Diagram Mobile)
+# Mobile Architecture & Privacy Ground Truth (Diagram Mobile)
 
 This document serves as the absolute technical baseline and single source of truth for the Diagram companion mobile application's architecture, security model, and data privacy disclosures across dgrm.app.
 
@@ -16,20 +16,18 @@ This document serves as the absolute technical baseline and single source of tru
   1. **Anonymous / Guest:** Ephemeral UID assigned on first launch for seamless onboarding.
   2. **Email & Password:** Standard credential-based login.
   3. **Google Sign-In (OAuth):** Native OAuth flow via Google.
+  4. **Sign in with Apple (Apple Account):** Native Apple OAuth / credential flow with support for "Hide My Email".
 * **Scope:** Authentication is strictly utilized for multi-device sync authorization and subscription verification.
 
 ---
 
 ## ☁️ 3. Cloud Backup, Storage & Sync Mechanics
 * **Firebase Storage (Google Cloud):**
-  * **Payload:** Stores pp_state.json (database state snapshot) and user-uploaded media files (habit proofs, avatars).
+  * **Payload:** Stores `app_state.json` (database state snapshot) and user-uploaded media files (habit proofs, avatars).
   * **Transit Security:** Encrypted in transit via HTTPS / TLS 1.3.
   * **Storage Security (At Rest):** Encrypted at rest using Google Cloud AES-256 infrastructure.
-  * **Security Rules:** Access is strictly restricted to authenticated user accounts via Firebase Security Rules (equest.auth.uid == userId).
+  * **Security Rules:** Access is strictly restricted to authenticated user accounts via Firebase Security Rules (`request.auth.uid == userId`).
   * ⚠️ **MANDATORY LEGAL GUARDRAIL:** This is **NOT** client-side zero-knowledge / End-to-End Encryption (E2EE). Never claim E2EE or «сквозное шифрование» in any web copy, documentation, or legal documents.
-* **Google Drive Backup (Optional):**
-  * Provides optional manual/scheduled user backup to an isolated, hidden app directory (ppDataFolder) via the Google Drive API.
-  * Diagram cannot read, modify, or access any other files in the user's Google Drive.
 
 ---
 

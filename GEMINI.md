@@ -44,10 +44,9 @@
 * **Key Mechanics & Core Tech Stack:**
   * **The Rocket (Work In Progress):** The Rocket is NOT a daily highlight. It is an adapted Kanban WIP-focus mechanic pinned to Today until finished.
   * **Offline-First & Local Storage:** All user data (goals, milestones, tasks, habits, journals, profile) is stored locally via `LocalDocumentStore`. App functions fully anonymously without internet.
-  * **Authentication:** Firebase Auth supporting Anonymous (Guest), Email/Password, and Google Sign-In (OAuth).
+  * **Authentication:** Firebase Auth supporting Anonymous (Guest), Email/Password, Google Sign-In (OAuth), and Sign in with Apple (Apple Account).
   * **Cloud Sync & Backup:**
     * **Firebase Storage (Google Cloud):** Stores `app_state.json` and media. HTTPS/TLS in transit, AES-256 at rest, protected by Firebase Security Rules. **NEVER claim End-to-End Encryption (E2EE) / сквозное шифрование**.
-    * **Google Drive Backup:** Optional backup to isolated user hidden folder (`appDataFolder`) via Google Drive API.
   * **AI Intelligence (AI Proxy / Google Gemini):** Ephemeral processing (Hot Draft) triggered ONLY on explicit user actions (decomposition, harmony analysis, manifesto). Zero global model training.
   * **Device Permissions:**
     * *Microphone / Speech-to-Text:* Dictation only via native system APIs (`speech_to_text`).

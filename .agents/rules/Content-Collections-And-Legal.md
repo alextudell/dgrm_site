@@ -55,7 +55,6 @@ export const collections = {
 * **Authentication Data:** Firebase Authentication processes anonymous guest tokens, email/password credentials, or Google sign-in OAuth tokens strictly for account identification and sync authorization.
 * **Cloud Backup & Storage:**
   * **Firebase Storage (Google Cloud):** Stores `app_state.json` and media files over TLS, encrypted at rest (AES-256) and secured by Firebase Security Rules. **Explicitly state: NOT client-side zero-knowledge / E2EE encryption.**
-  * **Google Drive Backup:** Optional backup to an isolated hidden folder (`appDataFolder`) via Google Drive API.
 * **AI Processing (Google Gemini / AI Proxy):** AI requests (decomposition, harmony analysis, manifesto, voice intent) occur ONLY upon explicit user action, processed ephemerally (Hot Draft), and are NEVER used to train global AI models.
 * **Device Permissions:**
   * *Microphone / Speech-to-Text:* Dictation and voice entry only via system APIs (`speech_to_text`).

@@ -8,7 +8,7 @@ version: "1.0.0"
 
 ## 1. Introduction & Overview
 
-Welcome to **Diagram** ("we", "our", or "us"). Diagram is a premium personal planning and self-coaching application developed to help you organize goals, track routines, manage tasks, and reflect on personal progress.
+Welcome to **Diagram** ("we", "our", or "us"). Diagram is a personal planning and self-coaching application developed to help you organize goals, track routines, manage tasks, and reflect on personal progress.
 
 We respect your privacy and believe that personal thoughts, goals, and reflections belong to you. Diagram is architected with an **Offline-First** philosophy: by default, your data is stored directly on your personal device and can be used completely without creating an account.
 
@@ -36,6 +36,7 @@ This Privacy Policy explains what information we collect, how it is used, where 
 If you choose to create an account or sign in to synchronize data across devices, we collect:
 * **Email & Password:** Processed and secured via Firebase Authentication (Google LLC). Passwords are never visible to us.
 * **Google Sign-In:** If you sign in with Google OAuth, we receive your Google User Identifier (UID), email address, and basic profile info provided by Google.
+* **Sign in with Apple:** If you authenticate using your Apple Account, we receive your unique Apple User Identifier (UID) and, depending on your Apple privacy settings, your email address or an anonymized relay email address ("Hide My Email").
 * **Anonymous Guest Session:** If you do not sign in, a local anonymous identifier is maintained solely on your device.
 
 ### C. AI & Intelligent Assistant Processing (Optional / On-Demand)
@@ -52,7 +53,7 @@ Diagram includes optional AI-assisted features (such as goal decomposition, life
 * **Media Access:** If granted, access to your device's photo library or camera is used exclusively to let you attach photos to habits, tasks, or your personal profile avatar. Media files are stored locally and backed up only if cloud sync is activated.
 
 ### F. Subscriptions & In-App Purchases
-* **Purchase Processing:** In-app subscriptions (Monthly, Annual, Lifetime) are processed directly by the Apple App Store (Apple Inc.) or Google Play Store (Google LLC).
+* **Purchase Processing:** In-app subscriptions (Monthly, Annual) are processed directly by the Apple App Store (Apple Inc.) or Google Play Store (Google LLC).
 * **Subscription Management:** We use RevenueCat (RevenueCat, Inc.) to validate purchase receipts, manage active subscription tiers, and restore purchases. RevenueCat receives an anonymous app user identifier and transactional receipt metadata. We never see, collect, or store your credit card or bank details.
 
 ### G. Diagnostics, Crashes & Analytics
@@ -63,10 +64,9 @@ Diagram includes optional AI-assisted features (such as goal decomposition, life
 
 ## 4. Cloud Storage, Backup & Security
 
-* **Firebase Storage (Google Cloud):** When cloud backup is enabled, your app snapshot (`app_state.json`) and uploaded media are transferred over encrypted channels (TLS/HTTPS) and stored in Google Cloud data centers with encryption at rest. Access is strictly controlled via Firebase Security Rules tied to your authenticated user account.
-* **Google Drive Backup (Alternative):** If you choose Google Drive backup, your data is transferred directly to your own private Google Drive hidden application folder (`appDataFolder`). Only Diagram can access this specific folder; neither Diagram nor third-party apps have access to the rest of your personal Google Drive.
-* **Encryption Disclosure:** Data is encrypted in transit (TLS) and encrypted at rest by cloud infrastructure providers. Diagram does not utilize client-side zero-knowledge (end-to-end) encryption keys; your cloud data is protected by industry-standard authenticated access controls and cloud server encryption.
-* **Local Notifications:** Notifications are scheduled and triggered locally on your device. No external push notification servers are used to send tracking or promotional messages.
+* **Firebase Storage (Google Cloud):** When cloud backup is enabled, your app snapshot (`app_state.json`) and uploaded media are transferred over encrypted channels (**TLS/HTTPS**) and stored in Google Cloud data centers with industry-standard encryption at rest. Access is strictly controlled via Firebase Security Rules tied to your authenticated user account.
+* **Encryption Disclosure:** Data is encrypted in transit (TLS) and encrypted at rest by cloud infrastructure providers. Diagram does not utilize client-side zero-knowledge (end-to-end) encryption keys; your cloud data is protected by authenticated access controls and cloud server-side encryption.
+* **Local Notifications:** Notifications are scheduled and triggered **locally on your device**. No external push notification servers are used to send tracking or promotional messages.
 
 ---
 
@@ -76,8 +76,8 @@ We integrate trusted third-party services to provide infrastructure, analytics, 
 
 | Provider | Purpose | Privacy Policy |
 | :--- | :--- | :--- |
-| **Google LLC** (Firebase / Google Cloud / Gemini) | Authentication, Cloud Backup, Diagnostics (Crashlytics), Product Analytics, AI processing | [Google Privacy Policy](https://policies.google.com/privacy) |
-| **RevenueCat, Inc.** | In-app purchase receipt validation & subscription state | [RevenueCat Privacy Policy](https://www.revenuecat.com/privacy) |
+| **Google LLC** (Google Play, Firebase, Google Cloud, Gemini) | App distribution & in-app purchase processing (Android), authentication, cloud storage backup, diagnostics (Crashlytics), product analytics, AI processing | [Google Privacy Policy](https://policies.google.com/privacy) |
+| **RevenueCat, Inc.** | In-app purchase receipt validation & subscription state management | [RevenueCat Privacy Policy](https://www.revenuecat.com/privacy) |
 | **Apple Inc.** | App distribution, in-app billing (iOS / macOS) | [Apple Privacy Policy](https://www.apple.com/legal/privacy/) |
 
 ---
@@ -101,15 +101,16 @@ Diagram is not directed to individuals under the age of 13 (or under the applica
 
 ---
 
-## 8. Rights for EEA/UK (GDPR) and California (CCPA/CPRA) Users
+## 8. User Rights (GDPR, CCPA/CPRA & Global Standards)
 
-If you reside in the European Economic Area (EEA), the United Kingdom, or California, you have specific legal rights regarding your personal data:
+Regardless of your country of residence or citizenship (including users across the EEA, UK, US/California, and other jurisdictions), Diagram guarantees you the following rights:
 
-* **Right to Access & Portability:** You can access and export your data at any time via the in-app export tool.
-* **Right to Rectification:** You can edit and update all your data directly inside the application.
-* **Right to Erasure:** You can delete your account and cloud data anytime via the in-app deletion button.
-* **Non-Discrimination:** We will not discriminate against you for exercising your privacy rights.
-* **Do Not Sell My Personal Information:** We do not sell your personal information.
+* **Right to Access & Data Portability:** You can export a complete machine-readable archive (.zip / JSON) of all your personal records (goals, tasks, habits, journals) at any time via the "Export Data" feature in Settings.
+* **Right to Rectification:** You have full control over your information and can edit or update any entries directly within the application interface.
+* **Right to Erasure ("Right to Be Forgotten"):** You can permanently delete your account and all associated cloud backups with one click via "Delete Account" in Settings. Local data is instantly purged when clearing storage or uninstalling the app.
+* **Right to Withdraw Consent:** You can revoke system permissions (microphone, photos, notifications) or disable cloud backup at any time in system settings.
+* **Non-Discrimination:** We will not discriminate against you or degrade your app experience for exercising any of your legal privacy rights.
+* **Do Not Sell My Personal Information:** We have never sold, do not sell, and will never sell your personal information to third parties.
 
 ---
 
@@ -121,9 +122,8 @@ We may update this Privacy Policy from time to time to reflect changes in our te
 
 ## 10. Contact Us
 
-If you have questions, concerns, or requests regarding this Privacy Policy or your data, please contact us:
+If you have questions, concerns, or legal inquiries regarding this Privacy Policy or your data, please contact us:
 
 * **Email:** [support@dgrm.app](mailto:support@dgrm.app)
 * **Website:** [https://dgrm.app](https://dgrm.app)
-* **App Identifier:** `app.dgrm.diagram`
-* **Developer/Entity:** Aleksey Tudell
+* **Developer:** Diagram Team

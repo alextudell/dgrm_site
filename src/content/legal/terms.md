@@ -37,7 +37,7 @@ Diagram incorporates AI-assisted capabilities (such as goal decomposition, life 
 ## 4. User Accounts & Offline Usage
 
 * **Anonymous / Guest Mode:** You may use Diagram locally without creating an account. In guest mode, your data resides entirely on your device, and you are responsible for maintaining your device's security and local backups.
-* **Registered Accounts:** If you create an account (via Email/Password or Google Sign-In), you are responsible for safeguarding your login credentials and for all activities that occur under your account.
+* **Registered Accounts:** If you create an account (via Email/Password, Google Sign-In, or Sign in with Apple / Apple Account), you are responsible for safeguarding your login credentials and for all activities that occur under your account.
 * **Account Deletion:** You have the right to delete your account and all associated cloud data at any time directly in the App via *Settings ➔ Account ➔ Delete Account*.
 
 ---
@@ -46,10 +46,9 @@ Diagram incorporates AI-assisted capabilities (such as goal decomposition, life 
 
 Diagram offers optional premium features ("Diagram Pro" / "Diagram Premium") available through in-app purchases and subscriptions.
 
-### A. Subscription Tiers & One-Time Purchases
+### A. Subscription Tiers
 * **Monthly Subscription:** Billed on a recurring monthly basis.
 * **Annual Subscription:** Billed on a recurring annual basis (may include a free trial period, such as 7 days).
-* **Lifetime Access:** A one-time non-consumable purchase granting lifetime access to premium features without recurring charges.
 
 ### B. Free Trials
 If offered, a free trial allows you to access premium features for a specified period (e.g., 7 days) starting upon enrollment.
@@ -57,13 +56,13 @@ If offered, a free trial allows you to access premium features for a specified p
 * **Forfeiture:** Any unused portion of a free trial period will be forfeited if you purchase a subscription before the trial expires.
 
 ### C. Billing & Auto-Renewal (Apple App Store & Google Play)
-* **Payment Processing:** All purchases are processed and billed directly through your Apple ID (on iOS/macOS) or Google Account (on Android) via the respective app store. Diagram does not process or store credit card details.
+* **Payment Processing:** All purchases are processed and billed directly through your Apple Account (on iOS/macOS) or Google Account (on Android) via the respective app store. Diagram does not process or store credit card details.
 * **Auto-Renewal:** Subscriptions automatically renew unless auto-renew is disabled at least 24 hours prior to the end of the current billing cycle.
 * **Renewal Charge:** Your account will be charged for renewal within 24 hours prior to the end of the current period at the standard tier rate selected.
 
 ### D. Cancellation & Refunds
 * **How to Cancel:** You can manage or cancel your subscription at any time through your device's account settings:
-  * **iOS / macOS:** *Settings ➔ [Your Apple ID] ➔ Subscriptions ➔ Diagram*.
+  * **iOS / macOS:** *Settings ➔ [Your Apple Account] ➔ Subscriptions ➔ Diagram*.
   * **Android:** *Google Play Store ➔ Profile Icon ➔ Payments & Subscriptions ➔ Subscriptions ➔ Diagram*.
 * **Post-Cancellation:** Cancelling a subscription stops future billing. You will retain access to premium features until the end of the current paid billing period.
 * **Refunds:** Subscription and purchase refund requests are governed exclusively by the refund policies of Apple (App Store) or Google (Google Play). Diagram cannot issue direct refunds for app store transactions.
@@ -131,7 +130,7 @@ If you downloaded the App from the Apple App Store or Google Play Store:
 
 ## 12. Governing Law and Dispute Resolution
 
-These Terms shall be governed by and construed in accordance with the laws of your applicable jurisdiction, without regard to conflict of law principles. Any dispute arising under these Terms shall be resolved through good-faith negotiations before initiating any formal legal proceeding.
+These Terms shall be governed by and construed in accordance with the applicable laws of the developer's jurisdiction of registration, without regard to conflict of law principles. Any dispute arising under these Terms shall be resolved through good-faith negotiations before initiating any formal legal proceedings.
 
 ---
 
@@ -147,4 +146,4 @@ For any questions, feedback, or legal inquiries regarding these Terms, please co
 
 * **Email:** [support@dgrm.app](mailto:support@dgrm.app)
 * **Website:** [https://dgrm.app](https://dgrm.app)
-* **Developer / Entity:** Aleksey Tudell
+* **Developer:** Diagram Team
