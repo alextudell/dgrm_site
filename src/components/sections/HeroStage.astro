@@ -72,16 +72,21 @@ const tabsNav = t.stage.tabsNav;
     </div>
 
     <!-- The Stage Switcher & Live Device Viewport -->
-    <div id="interactive-stage-container" class="pt-2">
+    <div id="interactive-stage-container" class="pt-6 sm:pt-10 relative">
+      <!-- Ambient Backlight behind top edge of desktop showcase -->
+      <div class="hidden sm:block absolute -top-16 left-1/2 -translate-x-1/2 w-[700px] lg:w-[900px] h-[260px] ambient-glow-sapphire opacity-35 dark:opacity-25 pointer-events-none blur-3xl -z-10"></div>
       
-      <!-- Live Stage Container -->
-      <div class="diagram-glass-elevated rounded-squircle-2xl sm:rounded-squircle-3xl p-4 sm:p-10 lg:p-12 border border-border-highlight shadow-2xl relative overflow-hidden text-left bg-grid-subtle">
+      <!-- Live Stage Container: Borderless Fluid Canvas on Mobile, Elevated Glass Bento on Desktop -->
+      <div class="relative overflow-hidden text-left sm:diagram-glass-elevated sm:rounded-squircle-3xl p-0 sm:p-10 lg:p-12 sm:border sm:border-border-highlight sm:shadow-2xl">
+        <!-- Top Specular Hairline / Optical Edge Grounding Beam -->
+        <div class="stage-top-specular-beam hidden sm:block pointer-events-none" aria-hidden="true"></div>
+
         <!-- Dynamic Stage Halos behind device -->
-        <div id="stage-halo" class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[520px] h-[520px] ambient-glow-sapphire opacity-60 pointer-events-none transition-all duration-700 blur-3xl"></div>
+        <div id="stage-halo" class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[340px] sm:w-[520px] h-[340px] sm:h-[520px] ambient-glow-sapphire opacity-70 sm:opacity-60 pointer-events-none transition-all duration-700 blur-3xl"></div>
         <div class="absolute -top-24 -left-24 w-72 h-72 ambient-glow-sapphire opacity-20 pointer-events-none blur-3xl"></div>
 
         <!-- Cupertino-Grade Top Story Controller Bar (Glanceable Segmented Nav) -->
-        <div class="pb-4 sm:pb-6 mb-5 sm:mb-8 border-b border-border-subtle flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4 relative z-20">
+        <div class="pb-3.5 sm:pb-6 mb-5 sm:mb-8 sm:border-b sm:border-border-subtle flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4 relative z-20">
           <div class="flex items-center gap-2 self-start">
             <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
             <span class="text-xs font-bold uppercase tracking-wider text-text-secondary">{t.stage.eyebrow}</span>
@@ -94,15 +99,15 @@ const tabsNav = t.stage.tabsNav;
                 type="button"
                 data-stage-index={idx}
                 data-stage-key={key}
-                class="stage-rail-btn group relative flex flex-col justify-between py-1 px-1 sm:px-2 rounded-xl hover:bg-white/[0.04] dark:hover:bg-white/[0.06] focus:outline-none transition-all cursor-pointer text-center sm:text-left"
+                class="stage-rail-btn group relative flex flex-col justify-between py-1 px-1 sm:px-2 rounded-xl hover:bg-white/[0.04] dark:hover:bg-white/[0.06] focus:outline-none transition-all cursor-pointer text-center"
                 aria-label={tab.label}
               >
                 <!-- Step Label -->
-                <span class="stage-rail-label text-[9.5px] sm:text-[11.5px] font-medium text-text-muted group-hover:text-text-secondary transition-colors truncate block pb-1.5">
+                <span class="stage-rail-label text-[10px] sm:text-[12px] font-medium text-text-muted group-hover:text-text-secondary transition-colors block pb-1.5 text-center">
                   {tab.label}
                 </span>
                 <!-- Rail Track -->
-                <div class="w-full h-1 sm:h-1.5 rounded-full bg-surface-soft overflow-hidden relative transition-all group-hover:bg-border-highlight">
+                <div class="w-full h-1 sm:h-1.5 rounded-full bg-surface-soft/80 dark:bg-surface-soft overflow-hidden relative transition-all group-hover:bg-border-highlight">
                   <!-- Animated Fill Bar -->
                   <div class="stage-rail-fill h-full bg-primary rounded-full origin-left scale-x-0 transition-transform"></div>
                 </div>
@@ -160,13 +165,13 @@ const tabsNav = t.stage.tabsNav;
             <div class="w-full max-w-full sm:max-w-[340px] lg:max-w-[350px] relative">
               
               <!-- Responsive Titanium Bezel (Clean fluid container on mobile < sm, authentic smartphone bezel on sm+) -->
-              <div class="sm:device-frame-titanium p-0 sm:p-2 rounded-2xl sm:rounded-[46px] hover:scale-[1.01]">
+              <div class="sm:device-frame-titanium p-0 sm:p-2 rounded-[32px] sm:rounded-[46px] hover:scale-[1.01]">
                 
                 <!-- Screen Bezel Interior -->
-                <div class="bg-[#0B0D13] dark:bg-[#0B0D13] rounded-2xl sm:rounded-[42px] overflow-hidden border border-white/10 sm:shadow-2xl relative w-full">
+                <div class="bg-[#0B0D13] dark:bg-[#0B0D13] rounded-[28px] sm:rounded-[42px] overflow-hidden border border-white/15 dark:border-white/10 shadow-2xl relative w-full">
                   
                   <!-- Screen Specular Gloss Overlay -->
-                  <div class="hidden sm:block screen-specular-gloss rounded-2xl sm:rounded-[36px]"></div>
+                  <div class="hidden sm:block screen-specular-gloss rounded-[28px] sm:rounded-[36px]"></div>
 
                   <!-- Dynamic Island Header (Visible on sm+ screens to avoid double-status bar on mobile) -->
                   <div class="hidden sm:flex pt-3.5 pb-2.5 px-5 justify-between items-center text-[10px] font-semibold text-slate-400 select-none relative z-30">
