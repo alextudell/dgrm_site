@@ -16,7 +16,7 @@ const { t } = Astro.props;
   <div class="max-w-4xl mx-auto relative z-10 space-y-8 sm:space-y-14">
     <!-- Header -->
     <div class="text-center space-y-3 sm:space-y-4">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full diagram-glass border border-border-highlight text-primary text-xs font-bold uppercase tracking-widest">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
         <span>✦</span>
         <span>{t.faq.eyebrow}</span>
       </div>
@@ -28,14 +28,14 @@ const { t } = Astro.props;
       </p>
     </div>
 
-    <!-- Unified Floating Glass Accordion -->
-    <div class="diagram-glass-elevated rounded-squircle-2xl border border-border-highlight shadow-2xl overflow-hidden divide-y divide-border-subtle">
+    <!-- Individual Tactile Glass Cards Stack (Zero Matryoshka) -->
+    <div class="space-y-3 sm:space-y-4">
       {t.faq.items.map((faq) => (
-        <details class="faq-item group transition-colors duration-300 hover:bg-primary/[0.02] open:bg-primary/[0.03]">
-          <summary class="flex items-center justify-between p-5 sm:p-8 font-semibold text-text-primary cursor-pointer list-none select-none group-open:text-primary transition-colors">
-            <span class="text-base sm:text-lg pr-6 font-semibold tracking-tight leading-snug">{faq.q}</span>
-            <span class="faq-icon w-8 h-8 rounded-full diagram-glass border border-border-highlight flex items-center justify-center text-primary transition-transform duration-300 group-open:rotate-45 shrink-0 shadow-sm">
-              <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <details class="faq-item group rounded-2xl diagram-glass border border-border-subtle hover:border-border-highlight transition-all duration-300 overflow-hidden open:border-primary/30 open:shadow-lg open:shadow-primary/5">
+          <summary class="flex items-center justify-between p-4 sm:p-6 font-semibold text-text-primary cursor-pointer list-none select-none group-open:text-primary transition-colors">
+            <span class="text-[15px] sm:text-lg pr-4 font-semibold tracking-tight leading-snug">{faq.q}</span>
+            <span class="faq-icon w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-open:rotate-45 shrink-0">
+              <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"/>
                 <line x1="5" y1="12" x2="19" y2="12"/>
               </svg>
@@ -43,8 +43,8 @@ const { t } = Astro.props;
           </summary>
           <div class="faq-content grid grid-rows-[0fr] opacity-0 group-open:grid-rows-[1fr] group-open:opacity-100 transition-[grid-template-rows,opacity] duration-300 ease-out">
             <div class="overflow-hidden">
-              <div class="px-6 pb-6 sm:px-8 sm:pb-8 text-sm sm:text-base text-text-secondary leading-relaxed">
-                <p class="border-t border-border-subtle pt-4">
+              <div class="px-4 pb-4 sm:px-6 sm:pb-6 text-sm sm:text-base text-text-secondary leading-relaxed pt-1">
+                <p class="text-text-secondary leading-relaxed">
                   {faq.a}
                 </p>
               </div>
