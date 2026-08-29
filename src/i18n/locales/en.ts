@@ -43,7 +43,7 @@ export const en = {
     },
     tabs: {
       goals: {
-        label: "Goal & Manifesto",
+        label: "Goals",
         tag: "01 · Purpose & Foundation",
         title: "Anchor your ambition to deep purpose",
         desc: "Most goals fade when their true reason is forgotten. Attach your intention to a personal Manifesto — to stay sovereign in moments of doubt.",
@@ -67,7 +67,7 @@ export const en = {
         },
       },
       roadmap: {
-        label: "Plan & Milestones",
+        label: "Plan",
         tag: "02 · Plan & Milestones",
         title: "Deconstruct ambitious goals into clear milestones",
         desc: "Turn a grand vision into a navigable roadmap. Divide your path into compact steps and advance with complete clarity.",
@@ -96,7 +96,7 @@ export const en = {
         },
       },
       rocket: {
-        label: "Today & Daily Flow",
+        label: "Action",
         tag: "03 · Action & Daily Flow",
         title: "Strategic focus and daily rhythm for every day",
         desc: "Everything that matters in front of you. Pinned focus guides you toward core goals, while daily habits create steady momentum in a calm, confident flow.",
@@ -129,7 +129,7 @@ export const en = {
         },
       },
       journal: {
-        label: "Journal & Reflection",
+        label: "Journal",
         tag: "04 · Journal & Reflection",
         title: "Chronicle of victories and evening reflection",
         desc: "Every day leaves a mark. Write down insights, unload doubts, and close each evening with brief reflection to see your genuine progress and make thoughtful conclusions.",
@@ -149,7 +149,7 @@ export const en = {
         },
       },
       pulse: {
-        label: "Values & Pulse",
+        label: "Values",
         tag: "05 · Energy & Balance",
         title: "Life balance and steady daily rhythm",
         desc: "Sustainable results emerge from balance. Energize your core life pillars, listen to the Voice of Harmony, and maintain a steady pace without burnout.",

@@ -36,12 +36,12 @@ html:not(.dark) {
   /* Glassmorphism Specs */
   --glass-bg: rgba(255, 255, 255, 0.88);
   --glass-elevated-bg: rgba(255, 255, 255, 0.96);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-elevated-border: rgba(0, 0, 0, 0.10);
-  --glass-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.06), 0 2px 6px 0 rgba(15, 23, 42, 0.02);
-  --glass-elevated-shadow: 0 20px 50px -12px rgba(99, 102, 241, 0.12), 0 30px 70px -15px rgba(15, 23, 42, 0.10);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-elevated-border: rgba(15, 23, 42, 0.11);
+  --glass-shadow: 0 0 0 1px rgba(15, 23, 42, 0.04), 0 4px 20px -4px rgba(15, 23, 42, 0.06), 0 1px 3px 0 rgba(15, 23, 42, 0.02);
+  --glass-elevated-shadow: 0 0 0 1px rgba(15, 23, 42, 0.07), 0 2px 8px -1px rgba(15, 23, 42, 0.05), 0 20px 50px -12px rgba(99, 102, 241, 0.12), 0 30px 70px -15px rgba(15, 23, 42, 0.10);
   --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
-  --glass-elevated-highlight: inset 0 1px 0 0 #FFFFFF;
+  --glass-elevated-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 
   /* Hero & Showcase Accents */
   --headline-gradient: linear-gradient(135deg, #4338CA 0%, #6366F1 50%, #4F46E5 100%);
@@ -86,11 +86,11 @@ html.dark {
   --glass-bg: rgba(18, 21, 30, 0.72);
   --glass-elevated-bg: rgba(24, 29, 42, 0.85);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-elevated-border: rgba(255, 255, 255, 0.12);
-  --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
-  --glass-elevated-shadow: 0 25px 60px -15px rgba(79, 70, 229, 0.18), 0 35px 90px -20px rgba(0, 0, 0, 0.75);
+  --glass-elevated-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 16px 40px -10px rgba(0, 0, 0, 0.5);
+  --glass-elevated-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 2px 8px -1px rgba(0, 0, 0, 0.4), 0 25px 60px -15px rgba(79, 70, 229, 0.18), 0 35px 90px -20px rgba(0, 0, 0, 0.75);
   --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
-  --glass-elevated-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  --glass-elevated-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
 
   /* Hero & Showcase Accents */
   --headline-gradient: linear-gradient(135deg, #FFFFFF 0%, #E0E7FF 40%, #A5B4FC 100%);
@@ -277,6 +277,33 @@ html:not(.dark) .feature-card-premium:hover {
   pointer-events: none;
   background: linear-gradient(125deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 30%, transparent 65%);
   z-index: 20;
+}
+
+/* Specular Top Hairline Accent (Soft-Premium Grounding) */
+.stage-top-specular-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(15, 23, 42, 0.08) 15%, 
+    rgba(99, 102, 241, 0.5) 50%, 
+    rgba(15, 23, 42, 0.08) 85%, 
+    transparent 100%
+  );
+  z-index: 30;
+}
+
+html.dark .stage-top-specular-beam {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.08) 15%, 
+    rgba(255, 255, 255, 0.45) 50%, 
+    rgba(255, 255, 255, 0.08) 85%, 
+    transparent 100%
+  );
 }
 
 /* Stage Transition Keyframes */

@@ -10,7 +10,7 @@ const { t } = Astro.props;
 const coach = t.aiCoach;
 ---
 
-<section id="ai" class="py-12 sm:py-20 px-3.5 sm:px-6 lg:px-8 border-t border-border-subtle relative overflow-hidden">
+<section id="ai" class="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
   <!-- Ambient glow backdrop -->
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] ambient-glow-ai opacity-15 pointer-events-none blur-3xl"></div>
 
@@ -31,10 +31,10 @@ const coach = t.aiCoach;
     </div>
 
     <!-- Mobile Horizontal Snap Carousel / Desktop 2x2 Grid -->
-    <div>
+    <div class="w-full">
       <div 
         id="ai-coach-carousel"
-        class="flex md:grid md:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto overflow-x-auto md:overflow-x-visible snap-x snap-mandatory no-scrollbar -mx-3.5 px-3.5 sm:mx-0 sm:px-0 py-2 scroll-smooth"
+        class="flex md:grid md:grid-cols-2 gap-4 sm:gap-8 max-w-5xl w-full mx-auto overflow-x-auto md:overflow-x-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-auto sm:px-0 py-2 scroll-smooth"
         style="-webkit-overflow-scrolling: touch;"
       >
         {coach.items.map((item, index) => (
