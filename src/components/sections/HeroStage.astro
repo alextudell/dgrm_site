@@ -21,8 +21,8 @@ const tabsNav = t.stage.tabsNav;
     
     <!-- Hero Header Block -->
     <div class="max-w-4xl mx-auto space-y-4 sm:space-y-6">
-      <!-- Eyebrow Pill -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full diagram-glass border border-border-highlight shadow-sm">
+      <!-- Eyebrow Pill (Desktop/Tablet only) -->
+      <div class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full diagram-glass border border-border-highlight shadow-sm">
         <span class="flex h-2 w-2 relative">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-rocket opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-rocket"></span>
@@ -58,7 +58,7 @@ const tabsNav = t.stage.tabsNav;
           <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
             <path d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 0 1-.362-.485V2.3c0-.173.125-.34.362-.486zm11.24 11.241l2.128 2.129-11.455 6.613 9.327-8.742zm0-2.11L5.522 2.203l11.455 6.613-2.128 2.129zm1.055 1.055l3.87 2.235c1.077.622 1.077 1.638 0 2.26l-3.87 2.235-2.103-2.104 2.103-2.626z"/>
           </svg>
-          <span>{t.hero.joinBeta}</span>
+          <span class="whitespace-nowrap">{t.hero.joinBeta}</span>
         </a>
 
         <!-- iOS TestFlight Waitlist (Triggers Native Sheet) -->
@@ -71,7 +71,7 @@ const tabsNav = t.stage.tabsNav;
           <svg class="w-4 sm:w-4.5 h-4 sm:h-4.5 fill-current shrink-0" viewBox="0 0 24 24">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.04-1.82.92-2.88-.9.04-2 .6-2.64 1.36-.57.65-1.06 1.73-.93 2.77 1.01.08 2.03-.49 2.65-1.25z"/>
           </svg>
-          <span>{t.hero.iosWaitlist}</span>
+          <span class="whitespace-nowrap">{t.hero.iosWaitlist}</span>
         </button>
       </div>
 
@@ -145,7 +145,7 @@ const tabsNav = t.stage.tabsNav;
           
           <!-- Narrative Column (Left 6 Cols) -->
           <div id="stage-narrative" class="lg:col-span-6 space-y-4 sm:space-y-6 lg:space-y-8 min-h-0 lg:min-h-[460px] flex flex-col justify-center items-start transition-all duration-300">
-            <div id="stage-tag-wrapper" class="inline-flex items-center gap-2.5 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 text-primary dark:text-indigo-400 text-xs sm:text-[13px] font-semibold tracking-wide shadow-sm whitespace-nowrap self-start w-fit">
+            <div id="stage-tag-wrapper" class="hidden sm:inline-flex items-center gap-2.5 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 text-primary dark:text-indigo-400 text-xs sm:text-[13px] font-semibold tracking-wide shadow-sm whitespace-nowrap self-start w-fit">
               <span id="stage-badge-icon" class="w-4 h-4 shrink-0 flex items-center justify-center text-primary dark:text-indigo-400">
                 <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>

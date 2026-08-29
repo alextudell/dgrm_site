@@ -46,7 +46,7 @@ export const en = {
         label: "Goals",
         tag: "01 · Purpose & Foundation",
         title: "Anchor your ambition to deep purpose",
-        desc: "Most goals fade when their true reason is forgotten. Attach your intention to a personal Manifesto — to stay sovereign in moments of doubt.",
+        desc: "Attach your intention to a personal Manifesto to stay sovereign in moments of doubt.",
         quote: "He who has a why to live can bear almost any how.",
         quoteAuthor: "Friedrich Nietzsche",
         screen: {
@@ -70,7 +70,7 @@ export const en = {
         label: "Plan",
         tag: "02 · Plan & Milestones",
         title: "Deconstruct ambitious goals into clear milestones",
-        desc: "Turn a grand vision into a navigable roadmap. Divide your path into compact steps and advance with complete clarity.",
+        desc: "Divide your path into compact steps and advance with complete clarity.",
         quote: "Divide each difficulty into as many parts as is feasible and necessary to resolve it.",
         quoteAuthor: "René Descartes",
         screen: {
@@ -99,7 +99,7 @@ export const en = {
         label: "Action",
         tag: "03 · Action & Daily Flow",
         title: "Strategic focus and daily rhythm for every day",
-        desc: "Everything that matters in front of you. Pinned focus guides you toward core goals, while daily habits create steady momentum in a calm, confident flow.",
+        desc: "Keep your core focus in front of you and maintain steady daily momentum.",
         quote: "You do not rise to the level of your goals. You fall to the level of your systems.",
         quoteAuthor: "James Clear (Atomic Habits)",
         screen: {
@@ -132,7 +132,7 @@ export const en = {
         label: "Journal",
         tag: "04 · Journal & Reflection",
         title: "Chronicle of victories and evening reflection",
-        desc: "Every day leaves a mark. Write down insights, unload doubts, and close each evening with brief reflection to see your genuine progress and make thoughtful conclusions.",
+        desc: "Capture insights, unload doubts, and close each evening with calm reflection.",
         quote: "Journaling turns your invisible daily progress into a tangible fact.",
         quoteAuthor: "James Clear",
         screen: {
@@ -152,7 +152,7 @@ export const en = {
         label: "Values",
         tag: "05 · Energy & Balance",
         title: "Life balance and steady daily rhythm",
-        desc: "Sustainable results emerge from balance. Energize your core life pillars, listen to the Voice of Harmony, and maintain a steady pace without burnout.",
+        desc: "Energize your core life pillars and maintain steady balance without burnout.",
         quote: "Equanimity of mind and allegiance to your core values are the foundation of any enduring path.",
         quoteAuthor: "Marcus Aurelius",
         screen: {
@@ -276,8 +276,8 @@ export const en = {
     title: "Your Focus. Your Pace.",
     highlight: "Your Results.",
     subtitle: "Join the closed beta to test Diagram in action and help shape the future of the instrument.",
-    betaButton: "Join Google Play Beta",
-    iosButton: "Join iOS Waitlist",
+    betaButton: "Join Beta Testing",
+    iosButton: "Get iOS Invite",
     pillOffline: "Offline-First",
     pillZeroTracking: "PRO Cloud Sync",
     pillGemini: "Gemini Intelligence",
