@@ -47,11 +47,13 @@ const tabsNav = t.stage.tabsNav;
         </p>
       )}
 
-      <!-- Tactical Dual CTAs (Apple-style responsive hierarchy) -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 pt-1 sm:pt-2" id="download">
+      <!-- Tactical Dual CTAs (Platform-Aware & Ergonomic Squircle Geometry) -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 pt-1.5 sm:pt-2 w-full max-w-md sm:max-w-none mx-auto" id="hero-cta-container">
+        <!-- Android Google Play Primary (Default) -->
         <a 
+          id="hero-cta-android"
           href="mailto:support@dgrm.app?subject=Google%20Play%20Beta%20Access%20Request" 
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full btn-velvet-primary text-white font-semibold text-sm sm:text-base ring-1 ring-white/20 shadow-lg shadow-indigo-500/20"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl sm:rounded-full btn-velvet-primary text-white font-semibold text-[15px] sm:text-base ring-1 ring-white/20 shadow-lg shadow-indigo-500/20 active:scale-[0.98] transition-transform"
         >
           <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
             <path d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 0 1-.362-.485V2.3c0-.173.125-.34.362-.486zm11.24 11.241l2.128 2.129-11.455 6.613 9.327-8.742zm0-2.11L5.522 2.203l11.455 6.613-2.128 2.129zm1.055 1.055l3.87 2.235c1.077.622 1.077 1.638 0 2.26l-3.87 2.235-2.103-2.104 2.103-2.626z"/>
@@ -59,16 +61,39 @@ const tabsNav = t.stage.tabsNav;
           <span>{t.hero.joinBeta}</span>
         </a>
 
-        <a 
-          href="mailto:support@dgrm.app?subject=iOS%20TestFlight%20Invite%20Request" 
-          class="w-full sm:w-auto px-5 sm:px-7 py-3 sm:py-4 rounded-full btn-secondary-tactile gap-2 text-xs sm:text-base font-medium sm:font-semibold"
+        <!-- iOS TestFlight Waitlist (Triggers Native Sheet) -->
+        <button 
+          type="button"
+          id="hero-cta-ios"
+          data-open-waitlist
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3.5 sm:py-4 rounded-2xl sm:rounded-full btn-secondary-tactile text-[15px] sm:text-base font-semibold active:scale-[0.98] transition-transform cursor-pointer"
         >
-          <svg class="w-3.5 sm:w-4 h-3.5 sm:h-4 fill-current shrink-0" viewBox="0 0 24 24">
+          <svg class="w-4 sm:w-4.5 h-4 sm:h-4.5 fill-current shrink-0" viewBox="0 0 24 24">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.04-1.82.92-2.88-.9.04-2 .6-2.64 1.36-.57.65-1.06 1.73-.93 2.77 1.01.08 2.03-.49 2.65-1.25z"/>
           </svg>
           <span>{t.hero.iosWaitlist}</span>
-        </a>
+        </button>
       </div>
+
+      <!-- Platform Detection Client Script -->
+      <script is:inline>
+        (function detectPlatformHero() {
+          const isApple = /iPhone|iPad|iPod/i.test(navigator.userAgent) || 
+            (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+          if (isApple && window.innerWidth < 640) {
+            const iosBtn = document.getElementById('hero-cta-ios');
+            const androidBtn = document.getElementById('hero-cta-android');
+            const container = document.getElementById('hero-cta-container');
+            if (iosBtn && androidBtn && container) {
+              iosBtn.classList.remove('btn-secondary-tactile');
+              iosBtn.classList.add('btn-velvet-primary', 'text-white', 'ring-1', 'ring-white/20', 'shadow-lg', 'shadow-indigo-500/20');
+              androidBtn.classList.remove('btn-velvet-primary', 'ring-1', 'ring-white/20', 'shadow-lg', 'shadow-indigo-500/20', 'text-white');
+              androidBtn.classList.add('btn-secondary-tactile');
+              container.insertBefore(iosBtn, androidBtn);
+            }
+          }
+        })();
+      </script>
     </div>
 
     <!-- The Stage Switcher & Live Device Viewport -->

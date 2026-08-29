@@ -76,14 +76,16 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
           type="button" 
           id="theme-toggle-btn"
           aria-label={t.nav.themeToggle}
-          class="w-7 h-7 -translate-y-px rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 focus:outline-none active:scale-90"
+          class="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 focus:outline-none active:scale-90 cursor-pointer"
         >
-          <svg class="w-4 h-4 dark:hidden fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"/>
+          <!-- Moon Icon (Shown in Light Mode) -->
+          <svg class="w-4 h-4 dark:hidden fill-none stroke-current stroke-2 shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
-          <svg class="w-4 h-4 hidden dark:inline fill-none stroke-current stroke-2 text-amber-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          <!-- Sun Icon (Shown in Dark Mode) -->
+          <svg class="w-4 h-4 hidden dark:block fill-none stroke-current stroke-2 text-amber-300 shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
           </svg>
         </button>
 
@@ -194,11 +196,12 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
     </div>
 
     <!-- Bottom Actions & Controls Section -->
-    <div class="pt-6 space-y-3">
-      <!-- Primary Conversion CTA -->
+    <div class="pt-6 space-y-3" id="drawer-cta-container">
+      <!-- Primary Conversion CTA (Android default) -->
       <a
+        id="drawer-cta-android"
         href="mailto:support@dgrm.app?subject=Google%20Play%20Beta%20Access%20Request"
-        class="mobile-nav-link w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full btn-velvet-primary text-white font-semibold text-sm shadow-md active:scale-95 transition-transform"
+        class="mobile-nav-link w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl btn-velvet-primary text-white font-semibold text-sm shadow-md active:scale-95 transition-transform"
       >
         <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
           <path d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 0 1-.362-.485V2.3c0-.173.125-.34.362-.486zm11.24 11.241l2.128 2.129-11.455 6.613 9.327-8.742zm0-2.11L5.522 2.203l11.455 6.613-2.128 2.129zm1.055 1.055l3.87 2.235c1.077.622 1.077 1.638 0 2.26l-3.87 2.235-2.103-2.104 2.103-2.626z"/>
@@ -207,15 +210,17 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
       </a>
 
       <!-- Secondary iOS Waitlist CTA -->
-      <a
-        href="mailto:support@dgrm.app?subject=iOS%20TestFlight%20Invite%20Request"
-        class="mobile-nav-link w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full btn-secondary-tactile text-text-primary font-medium text-xs shadow-sm active:scale-95 transition-transform"
+      <button
+        type="button"
+        id="drawer-cta-ios"
+        data-open-waitlist
+        class="mobile-nav-link w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl btn-secondary-tactile text-text-primary font-semibold text-xs shadow-sm active:scale-95 transition-transform cursor-pointer"
       >
         <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
           <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.04-1.82.92-2.88-.9.04-2 .6-2.64 1.36-.57.65-1.06 1.73-.93 2.77 1.01.08 2.03-.49 2.65-1.25z"/>
         </svg>
         <span>{t.hero.iosWaitlist}</span>
-      </a>
+      </button>
 
       <!-- Micro Footer Info in Drawer -->
       <div class="pt-2 flex items-center justify-between text-[11px] text-text-muted">

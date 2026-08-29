@@ -1,0 +1,288 @@
+---
+import type { Translations, SupportedLanguage } from '../../i18n/translations';
+
+interface Props {
+  t: Translations;
+  lang?: SupportedLanguage;
+}
+
+const { t } = Astro.props;
+---
+
+<!-- iOS TestFlight Waitlist Modal & Bottom Sheet (Zero-Bloat Vanilla JS) -->
+<div 
+  id="waitlist-modal" 
+  class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 opacity-0 pointer-events-none transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="waitlist-modal-title"
+  aria-hidden="true"
+>
+  <!-- Frosted Backdrop with Ambient Vignette -->
+  <div 
+    id="waitlist-backdrop" 
+    class="absolute inset-0 bg-black/70 backdrop-blur-md transition-opacity duration-300 cursor-pointer"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Sheet (Mobile) / Centered Card (Desktop) Container -->
+  <div 
+    id="waitlist-panel"
+    class="w-full sm:max-w-lg relative z-10 diagram-glass-elevated bg-[var(--bg-surface)]/95 dark:bg-[#12151E]/95 border-t sm:border border-border-highlight rounded-t-[32px] sm:rounded-squircle-2xl p-6 sm:p-8 shadow-2xl transform translate-y-full sm:translate-y-6 sm:scale-95 transition-all duration-300 ease-spring overflow-hidden"
+  >
+    <!-- Multi-layered Ambient Glow inside modal -->
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-40 ambient-glow-sapphire opacity-30 pointer-events-none blur-3xl"></div>
+    <div class="absolute -bottom-24 right-0 w-60 h-32 ambient-glow-ai opacity-20 pointer-events-none blur-3xl"></div>
+
+    <!-- Mobile Drag / Sheet Pill -->
+    <div class="sm:hidden w-12 h-1.5 bg-white/20 dark:bg-white/20 rounded-full mx-auto mb-4 shrink-0" aria-hidden="true"></div>
+
+    <!-- Close Button (X) -->
+    <button 
+      type="button" 
+      id="waitlist-close-btn"
+      class="absolute top-4 sm:top-5 right-4 sm:right-5 w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none cursor-pointer z-20"
+      aria-label={t.waitlistModal.closeButton}
+    >
+      <svg class="w-4 h-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <!-- 1. Form View -->
+    <div id="waitlist-form-view" class="space-y-5 text-left relative z-10">
+      <!-- Eyebrow Pill -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full diagram-glass border border-border-highlight text-xs font-semibold text-primary shadow-sm">
+        <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.04-1.82.92-2.88-.9.04-2 .6-2.64 1.36-.57.65-1.06 1.73-.93 2.77 1.01.08 2.03-.49 2.65-1.25z"/>
+        </svg>
+        <span>{t.waitlistModal.badge}</span>
+      </div>
+
+      <!-- Heading & Description -->
+      <div class="space-y-1.5">
+        <h3 id="waitlist-modal-title" class="text-xl sm:text-2xl font-bold tracking-tight text-text-primary">
+          {t.waitlistModal.title}
+        </h3>
+        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+          {t.waitlistModal.subtitle}
+        </p>
+      </div>
+
+      <!-- Email Capture Form -->
+      <form id="waitlist-form" class="space-y-3.5 pt-1">
+        <div class="space-y-1.5">
+          <label for="waitlist-email" class="block text-xs font-semibold text-text-primary">
+            {t.waitlistModal.emailLabel}
+          </label>
+          <div class="relative">
+            <input 
+              type="email" 
+              id="waitlist-email" 
+              name="email" 
+              required
+              autocomplete="email"
+              placeholder={t.waitlistModal.emailPlaceholder}
+              class="w-full px-4 py-3.5 rounded-xl bg-surface-soft/80 dark:bg-surface-soft border border-border-highlight text-text-primary placeholder:text-text-muted text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-inner"
+            />
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+          type="submit" 
+          id="waitlist-submit-btn"
+          class="w-full inline-flex items-center justify-center gap-2 py-3.5 sm:py-4 px-6 rounded-xl sm:rounded-2xl btn-velvet-primary text-white font-semibold text-sm sm:text-base ring-1 ring-white/20 shadow-lg shadow-indigo-500/20 active:scale-[0.98] transition-transform cursor-pointer"
+        >
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.04-1.82.92-2.88-.9.04-2 .6-2.64 1.36-.57.65-1.06 1.73-.93 2.77 1.01.08 2.03-.49 2.65-1.25z"/>
+          </svg>
+          <span id="waitlist-submit-text">{t.waitlistModal.submitButton}</span>
+        </button>
+
+        <!-- Privacy Assurance Note -->
+        <p class="text-[11px] sm:text-xs text-text-muted text-center pt-1 leading-normal">
+          🔒 {t.waitlistModal.privacyNote}
+        </p>
+      </form>
+
+      <!-- Google Play Alternative Switcher -->
+      <div class="pt-3 border-t border-border-subtle text-center text-xs text-text-muted flex items-center justify-center gap-1.5">
+        <span>{t.waitlistModal.altAndroidText}</span>
+        <a 
+          href="mailto:support@dgrm.app?subject=Google%20Play%20Beta%20Access%20Request" 
+          class="font-semibold text-primary hover:underline hover:text-indigo-400 transition-colors"
+        >
+          {t.waitlistModal.altAndroidLink}
+        </a>
+      </div>
+    </div>
+
+    <!-- 2. Success View (Hidden by default) -->
+    <div id="waitlist-success-view" class="hidden space-y-5 text-center py-4 relative z-10">
+      <!-- Animated Check Icon inside Soft-Premium Ring -->
+      <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/10">
+        <svg class="w-8 h-8 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <div class="space-y-2">
+        <!-- Eyebrow Pill -->
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 shadow-sm">
+          <span>{t.waitlistModal.successBadge}</span>
+        </div>
+
+        <h3 class="text-2xl font-bold tracking-tight text-text-primary">
+          {t.waitlistModal.successTitle}
+        </h3>
+
+        <p class="text-sm text-text-secondary leading-relaxed max-w-sm mx-auto">
+          {t.waitlistModal.successSubtitle}
+        </p>
+      </div>
+
+      <div class="pt-3">
+        <button 
+          type="button" 
+          id="waitlist-done-btn"
+          class="w-full py-3.5 rounded-xl btn-secondary-tactile text-text-primary font-semibold text-sm shadow-md active:scale-[0.98] transition-transform cursor-pointer"
+        >
+          {t.waitlistModal.closeButton}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Control Logic (Zero-Bloat Vanilla Script) -->
+<script is:inline>
+  (function initWaitlistModal() {
+    const modal = document.getElementById('waitlist-modal');
+    const backdrop = document.getElementById('waitlist-backdrop');
+    const panel = document.getElementById('waitlist-panel');
+    const closeBtn = document.getElementById('waitlist-close-btn');
+    const doneBtn = document.getElementById('waitlist-done-btn');
+    const form = document.getElementById('waitlist-form');
+    const formView = document.getElementById('waitlist-form-view');
+    const successView = document.getElementById('waitlist-success-view');
+    const emailInput = document.getElementById('waitlist-email');
+    const submitBtn = document.getElementById('waitlist-submit-btn');
+    const submitText = document.getElementById('waitlist-submit-text');
+
+    if (!modal || !panel || !form) return;
+
+    let isOpen = false;
+
+    function openModal() {
+      isOpen = true;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      modal.setAttribute('aria-hidden', 'false');
+
+      // Slide and scale panel in
+      panel.classList.remove('translate-y-full', 'sm:translate-y-6', 'sm:scale-95');
+      panel.classList.add('translate-y-0', 'sm:translate-y-0', 'sm:scale-100');
+
+      document.body.classList.add('overflow-hidden');
+
+      // Autofocus email input after transition
+      setTimeout(() => {
+        if (emailInput && !formView.classList.contains('hidden')) {
+          emailInput.focus();
+        }
+      }, 250);
+    }
+
+    function closeModal() {
+      isOpen = false;
+      panel.classList.remove('translate-y-0', 'sm:translate-y-0', 'sm:scale-100');
+      panel.classList.add('translate-y-full', 'sm:translate-y-6', 'sm:scale-95');
+
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.setAttribute('aria-hidden', 'true');
+
+      document.body.classList.remove('overflow-hidden');
+
+      // Reset to form view after close animation completes
+      setTimeout(() => {
+        if (formView && successView) {
+          formView.classList.remove('hidden');
+          successView.classList.add('hidden');
+          if (form) form.reset();
+        }
+      }, 350);
+    }
+
+    // Attach click listeners to all buttons marked with [data-open-waitlist]
+    function attachOpenListeners() {
+      const triggers = document.querySelectorAll('[data-open-waitlist]');
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        });
+      });
+    }
+
+    attachOpenListeners();
+    // Re-attach on dynamic navigation / DOM loads
+    document.addEventListener('astro:page-load', attachOpenListeners);
+
+    // Backdrop click
+    if (backdrop) {
+      backdrop.addEventListener('click', closeModal);
+    }
+
+    // Close buttons
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (doneBtn) doneBtn.addEventListener('click', closeModal);
+
+    // Escape key listener
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeModal();
+      }
+    });
+
+    // Form Submission Flow
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput?.value?.trim();
+      if (!email || !email.includes('@')) return;
+
+      if (submitBtn && submitText) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+      }
+
+      // Store in localStorage for seamless persistence
+      try {
+        const stored = JSON.parse(localStorage.getItem('dgrm_waitlist_emails') || '[]');
+        if (!stored.includes(email)) {
+          stored.push({ email, timestamp: new Date().toISOString(), platform: 'ios' });
+          localStorage.setItem('dgrm_waitlist_emails', JSON.stringify(stored));
+        }
+      } catch (err) {
+        console.warn('Waitlist local storage error:', err);
+      }
+
+      // Smooth transition to Success View
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+        }
+        formView.classList.add('hidden');
+        successView.classList.remove('hidden');
+      }, 400);
+    });
+
+    // Export globally for custom programmatic triggers
+    window.openDiagramWaitlist = openModal;
+    window.closeDiagramWaitlist = closeModal;
+  })();
+</script>

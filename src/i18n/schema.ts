@@ -227,6 +227,24 @@ export interface TranslationSchema {
     pillZeroTracking: string;
     pillGemini: string;
   };
+  waitlistModal: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    submitButton: string;
+    submitting: string;
+    successBadge: string;
+    successTitle: string;
+    successSubtitle: string;
+    closeButton: string;
+    altAndroidText: string;
+    altAndroidLink: string;
+    altIosText: string;
+    altIosLink: string;
+    privacyNote: string;
+  };
   legal: {
     backToHome: string;
     effectiveDate: string;

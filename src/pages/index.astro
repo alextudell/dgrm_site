@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/navigation/Header.astro';
 import Footer from '../components/navigation/Footer.astro';
 import StickyCTA from '../components/navigation/StickyCTA.astro';
+import WaitlistModal from '../components/ui/WaitlistModal.astro';
 
 import HeroStage from '../components/sections/HeroStage.astro';
 import AICoachSection from '../components/sections/AICoachSection.astro';
@@ -32,4 +33,5 @@ const t = translations.en;
 
   <Footer t={t} lang="en" />
   <StickyCTA t={t} lang="en" />
+  <WaitlistModal t={t} lang="en" />
 </BaseLayout>
