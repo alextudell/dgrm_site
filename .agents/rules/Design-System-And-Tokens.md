@@ -98,5 +98,20 @@ Always use strict mathematical cadences on the 8pt grid:
 * **Inter-Section Horizon Gap:** `160px` on desktop (80px bottom of Section A + 80px top of Section B, centered on `border-t border-border-subtle`)
 * **Content Stack Gap (`space-content-stack`):** `space-y-12 sm:space-y-16` (48px mobile $\to$ 64px desktop between header and cards)
 * **Header Elements Gap (`space-header-gap`):** `space-y-3 sm:space-y-4` (12px–16px between eyebrow, heading, and subtitle)
-* **Card Inner Padding:** `p-6 sm:p-10 lg:p-12` (24px–48px)
-* **Card & Feature Grids Gap:** `gap-6 sm:gap-8 lg:gap-12` (24px–48px)
+* **Card Inner Padding:** `p-5 sm:p-8 lg:p-10` (20px–40px)
+* **Card & Feature Grids Gap:** `gap-4 sm:gap-6 lg:gap-8` (16px–32px)
+
+---
+
+## 🛑 Single Surface & Anti-Matryoshka Law (Zero Nested Boxes)
+
+To prevent clutter, claustrophobic mobile layouts, and border-in-border-in-border noise:
+1. **Max Elevation Level = 1:** Never place an elevated bordered card (`diagram-glass` / `diagram-glass-elevated`) inside another card container.
+2. **Inner Elements Are Frameless:**
+   * Inside cards or lists, icon badges, chevrons, and buttons must NOT use harsh glass borders (`border-border-highlight`).
+   * Use clean SVG glyphs or soft translucent tints (`bg-primary/10`, `text-primary`).
+3. **List Items on Mobile:**
+   * Interactive lists (such as FAQ accordions) must either be a **single stack of standalone cards** (`space-y-3` with `diagram-glass rounded-2xl`) or an **open borderless list** on the canvas. Never wrap a group of cards into an outer master box.
+4. **Tailwind Class Safety Rule:**
+   * Never use non-standard fractional Tailwind spacing classes (`py-4.5`, `p-3.5`, `gap-2.5` where unconfigured).
+   * Stick strictly to the standard scale: `p-3`, `p-4`, `p-5`, `p-6`, `p-8`, `gap-3`, `gap-4`, `gap-6` or explicit bracket notation (`p-[18px]`).

@@ -50,15 +50,22 @@ export const collections = {
 
 ## 📜 Mandatory Content Requirements for Diagram
 
-### 1. Privacy Policy (`privacy.md`) Must Disclose:
-* **Offline-First Data Storage:** All goals, plans, daily habits, reflections, and notes are stored locally on the user's device via `LocalDocumentStore`. Diagram does not sell or inspect user coaching data.
-* **Authentication Data:** Firebase Authentication processes email addresses, user IDs, or Google sign-in tokens strictly for account identification and sync authorization.
-* **Diagnostic & Crash Data:** Firebase Crashlytics collects anonymized crash logs and device models to diagnose software bugs.
-* **Subscription Processing:** In-app purchases and subscriptions are processed by Apple In-App Purchase and Google Play Billing, mediated by **RevenueCat** (anonymized user ID and receipt validation).
-* **AI Processing:** AI requests (e.g. goal decomposition) are transmitted securely over TLS to Gemini API and are not used to train global AI models.
-* **Account Deletion & GDPR:** Instructions for data erasure directly in-app (*Settings → Delete Account*) or via email to `support@dgrm.app`.
+### 1. Privacy Policy (`privacy.md` / `privacy-ru.md`) Must Disclose:
+* **Offline-First Data Storage:** All goals, plans, milestones, tasks, daily habits, diary entries, reflections, and wheel of values entries are stored locally on the user's device via `LocalDocumentStore`. Diagram functions fully anonymously without internet.
+* **Authentication Data:** Firebase Authentication processes anonymous guest tokens, email/password credentials, or Google sign-in OAuth tokens strictly for account identification and sync authorization.
+* **Cloud Backup & Storage:**
+  * **Firebase Storage (Google Cloud):** Stores `app_state.json` and media files over TLS, encrypted at rest (AES-256) and secured by Firebase Security Rules. **Explicitly state: NOT client-side zero-knowledge / E2EE encryption.**
+  * **Google Drive Backup:** Optional backup to an isolated hidden folder (`appDataFolder`) via Google Drive API.
+* **AI Processing (Google Gemini / AI Proxy):** AI requests (decomposition, harmony analysis, manifesto, voice intent) occur ONLY upon explicit user action, processed ephemerally (Hot Draft), and are NEVER used to train global AI models.
+* **Device Permissions:**
+  * *Microphone / Speech-to-Text:* Dictation and voice entry only via system APIs (`speech_to_text`).
+  * *Camera / Photos:* Habit proof and avatar selection only.
+  * *Local Notifications & Widgets:* Scheduled locally (`flutter_local_notifications`), widgets read local data snapshot.
+* **Diagnostic, Telemetry & Analytics:** Firebase Crashlytics collects anonymized crash logs; Firebase Analytics collects anonymized interaction events. Journal and goal texts are NEVER sent to telemetry.
+* **Subscription Processing:** Subscriptions are processed by Apple In-App Purchases and Google Play Billing, mediated by **RevenueCat** (receipt validation). No payment card data is ever collected or processed by Diagram.
+* **Data Sovereignty & Deletion (GDPR & CCPA):** Export of full archive (`UserDataExporter` -> ZIP) and permanent in-app account & cloud data deletion (*Settings → Account → Delete Account*), plus local purge on app uninstall.
 
-### 2. Terms of Use (`terms.md`) Must Disclose:
+### 2. Terms of Use (`terms.md` / `terms-ru.md`) Must Disclose:
 * **License & Intellectual Property:** Standard EULA granting a personal, non-transferable license to use Diagram.
 * **Diagram Pro Subscriptions:**
   * Auto-renewable subscription terms (Monthly, Annual, Lifetime).

@@ -26,16 +26,36 @@
    * Prioritize lightning-fast load times (Lighthouse 100/100), clean static generation, zero unnecessary client-side JavaScript, and absolute cross-browser stability.
 4. **Single Source of Truth:**
    * Never duplicate copy, colors, or tokens across files. All typography, tokens, and legal content must live in dedicated, centralized directories.
+5. **Visual Proof Law (Zero Blind Coding):**
+   * **NEVER** present UI/layout changes to Aleksey without visual self-verification. Build errors (`astro check`) only verify syntax, not visual layout.
+   * The agent MUST capture headless screenshots on mobile (`390px` viewport) and desktop (`1280px`), inspect them via `view_file`, and verify padding, alignment, typography, and contrast before declaring work complete.
+6. **Anti-Matryoshka Law (Single Surface Rule):**
+   * **NEVER** nest card borders and elevated backgrounds inside each other (max 1 level of card elevation).
+   * Do NOT place bordered pill icons, double borders, or heavy sub-cards inside already elevated card containers. Inner elements must be clean, borderless glyphs or soft translucent chips (`bg-primary/10`).
+7. **Strict Tailwind Spacing Standard:**
+   * ONLY use standard Tailwind spacing scale (`p-4`, `p-5`, `p-6`, `gap-3`, `gap-4`) or explicit bracket notation (`p-[18px]`).
+   * **FORBIDDEN:** Fractional classes that do not exist in default Tailwind (`py-4.5`, `p-3.5`) which silently fail to `padding: 0`.
 
 ---
 
 ## 🧠 Product Context: What is Diagram?
 * **Product:** "Diagram" is a premium self-coaching and productivity app built on the 4-step loop: **Goal → Plan → Action → Reflection**.
 * **Visual Style:** **"Soft Premium"** (dark/light depth, squircle radii 24–32px, subtle glassmorphism, precise 8pt grid, restrained glow accents).
-* **Key Mechanics:**
+* **Key Mechanics & Core Tech Stack:**
   * **The Rocket (Work In Progress):** The Rocket is NOT a daily highlight. It is an adapted Kanban WIP-focus mechanic pinned to Today until finished.
-  * **AI Decomposition & Manifesto:** Intelligent coaching assistance that turns vague dreams into concrete action steps.
-  * **Offline-First & Cloud Sync:** Offline-first architecture with local SQLite/room database. Multi-device sync (PRO tier) is powered by secure **Google Cloud / Firebase infrastructure** (TLS 1.3 in transit, AES-256 at rest). **NEVER claim End-to-End Encryption (E2EE) / сквозное шифрование**.
+  * **Offline-First & Local Storage:** All user data (goals, milestones, tasks, habits, journals, profile) is stored locally via `LocalDocumentStore`. App functions fully anonymously without internet.
+  * **Authentication:** Firebase Auth supporting Anonymous (Guest), Email/Password, and Google Sign-In (OAuth).
+  * **Cloud Sync & Backup:**
+    * **Firebase Storage (Google Cloud):** Stores `app_state.json` and media. HTTPS/TLS in transit, AES-256 at rest, protected by Firebase Security Rules. **NEVER claim End-to-End Encryption (E2EE) / сквозное шифрование**.
+    * **Google Drive Backup:** Optional backup to isolated user hidden folder (`appDataFolder`) via Google Drive API.
+  * **AI Intelligence (AI Proxy / Google Gemini):** Ephemeral processing (Hot Draft) triggered ONLY on explicit user actions (decomposition, harmony analysis, manifesto). Zero global model training.
+  * **Device Permissions:**
+    * *Microphone / Speech-to-Text:* Dictation only via native system APIs (`speech_to_text`).
+    * *Camera / Photos:* Habit proof and avatar selection only.
+    * *Local Notifications & Widgets:* Scheduled locally (`flutter_local_notifications`), widgets read local snapshot.
+  * **Payments:** RevenueCat (`purchases_flutter`) for receipt verification. Financial data processed 100% by Apple & Google.
+  * **Diagnostics & Telemetry:** Firebase Crashlytics (anonymized crash logs) & Firebase Analytics (anonymized interaction events). Journal/goal content is NEVER sent to telemetry.
+  * **Data Sovereignty:** Full data export (`UserDataExporter` -> ZIP) and instant account/cloud data deletion (*Settings → Delete Account*).
   * **Branding Assets Source:** Official SVG logos, marks, and favicons are stored in `assets/branding/`.
 
 ---
@@ -51,3 +71,4 @@
 8. [Copywriting & Tone of Voice (`.agents/rules/Copywriting-And-Tone-Of-Voice.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Copywriting-And-Tone-Of-Voice.md)
 9. [Deployment & CI/CD (`.agents/rules/Deployment-And-CI-CD.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Deployment-And-CI-CD.md)
 10. [Motion & Animation Protocol (`.agents/rules/Motion-And-Animation-Tokens.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Motion-And-Animation-Tokens.md)
+11. [Mobile Architecture & Privacy Ground Truth (`.agents/rules/Mobile-Architecture-And-Privacy.md`)](file:///c:/_Projects/diagram_site/.agents/rules/Mobile-Architecture-And-Privacy.md)

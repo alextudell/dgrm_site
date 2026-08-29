@@ -74,3 +74,22 @@ To ensure the fixed header and sticky CTAs are not obscured by the iPhone Dynami
   * Clean header with Diagram logomark + Hamburger button.
   * When opened: Full-screen or slide-down glass drawer with high blur (`backdrop-blur-xl`).
   * Body scroll must be locked (`overflow: hidden` on `document.body`) while the mobile drawer is active.
+
+---
+
+## 📸 Mandatory Visual Proof Protocol (Zero-Blind-Coding Workflow)
+
+Code compilation (`npm run build` / `astro check`) only verifies JavaScript/TypeScript syntax. It CANNOT detect squished cards, missing paddings, or broken layout grids.
+
+**Before submitting ANY UI changes to Aleksey:**
+1. **Local Build & Snap:**
+   * Build the project: `npm run build`.
+   * Capture headless screenshots on mobile (`390x844`) and desktop (`1280x800`).
+2. **Visual Inspection:**
+   * Use `view_file` on the captured PNGs.
+   * Inspect:
+     - Vertical rhythm & padding breathing room.
+     - Zero horizontal clipping or overflowing text.
+     - Single elevation clarity (no nested box-in-box frames).
+     - Color contrast and readable typography hierarchy.
+3. **Iterate Before Delivery:** If any element looks cramped, misaligned, or unnatural, fix the code and re-snap before presenting to Aleksey.
