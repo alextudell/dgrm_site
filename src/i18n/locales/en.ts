@@ -31,7 +31,7 @@ export const en = {
     explore: "Explore the Engine ↓",
   },
   stage: {
-    eyebrow: "Interactive Showcase",
+    eyebrow: "How It Works",
     title: "One Unbroken Loop. Zero Clutter.",
     subtitle: "Switch between tabs to see how Diagram guides you from initial ideas to quiet, steady execution.",
     tabsNav: {

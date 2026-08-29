@@ -11,16 +11,16 @@ const tabs = t.stage.tabs;
 const tabsNav = t.stage.tabsNav;
 ---
 
-<section id="stage" class="relative pt-24 sm:pt-40 pb-12 sm:pb-20 px-3.5 sm:px-6 lg:px-8 overflow-hidden text-center">
+<section id="stage" class="relative pt-20 sm:pt-28 pb-10 sm:pb-16 px-3.5 sm:px-6 lg:px-8 overflow-hidden text-center">
   <!-- Multi-layered Ambient Atmosphere -->
   <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1100px] h-[450px] sm:h-[650px] ambient-glow-sapphire pointer-events-none opacity-50 blur-3xl"></div>
   <div class="absolute top-1/3 left-1/4 w-[400px] h-[400px] ambient-glow-ai pointer-events-none opacity-25 blur-3xl"></div>
   <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] ambient-glow-amber pointer-events-none opacity-20 blur-3xl"></div>
 
-  <div class="max-w-6xl mx-auto relative z-10 space-y-7 sm:space-y-14">
+  <div class="max-w-6xl mx-auto relative z-10 space-y-6 sm:space-y-10">
     
     <!-- Hero Header Block -->
-    <div class="max-w-4xl mx-auto space-y-5 sm:space-y-8">
+    <div class="max-w-4xl mx-auto space-y-4 sm:space-y-6">
       <!-- Eyebrow Pill -->
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full diagram-glass border border-border-highlight shadow-sm">
         <span class="flex h-2 w-2 relative">
@@ -80,29 +80,29 @@ const tabsNav = t.stage.tabsNav;
         <div id="stage-halo" class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[520px] h-[520px] ambient-glow-sapphire opacity-60 pointer-events-none transition-all duration-700 blur-3xl"></div>
         <div class="absolute -top-24 -left-24 w-72 h-72 ambient-glow-sapphire opacity-20 pointer-events-none blur-3xl"></div>
 
-        <!-- Cupertino-Grade Top Story Controller Bar (Glanceable on All Screen Sizes) -->
-        <div class="pb-5 sm:pb-8 mb-6 sm:mb-8 border-b border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 relative z-20">
-          <div class="flex items-center gap-2 self-start sm:self-center">
+        <!-- Cupertino-Grade Top Story Controller Bar (Glanceable Segmented Nav) -->
+        <div class="pb-4 sm:pb-6 mb-5 sm:mb-8 border-b border-border-subtle flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4 relative z-20">
+          <div class="flex items-center gap-2 self-start">
             <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
             <span class="text-xs font-bold uppercase tracking-wider text-text-secondary">{t.stage.eyebrow}</span>
           </div>
 
-          <!-- Story Progress Rails (5 Step Bars) -->
-          <div class="flex items-center justify-center gap-1.5 sm:gap-2.5 w-full sm:w-auto max-w-lg">
+          <!-- Story Progress Segmented Controller (5 Step Bars with Labels) -->
+          <div class="grid grid-cols-5 gap-1.5 sm:gap-2.5 w-full md:w-auto md:min-w-[480px] lg:min-w-[540px]">
             {Object.entries(tabs).map(([key, tab], idx) => (
               <button
                 type="button"
                 data-stage-index={idx}
                 data-stage-key={key}
-                class="stage-rail-btn group relative flex-1 sm:w-20 lg:w-24 sm:flex-initial h-8 sm:h-7 rounded-full flex flex-col justify-center px-1 focus:outline-none transition-all cursor-pointer"
+                class="stage-rail-btn group relative flex flex-col justify-between py-1 px-1 sm:px-2 rounded-xl hover:bg-white/[0.04] dark:hover:bg-white/[0.06] focus:outline-none transition-all cursor-pointer text-center sm:text-left"
                 aria-label={tab.label}
               >
-                <!-- Step Label (Mobile Compact) -->
-                <span class="text-[10px] sm:text-[11px] font-semibold text-text-muted group-hover:text-primary transition-colors text-center pb-1 truncate hidden xs:block sm:hidden">
+                <!-- Step Label -->
+                <span class="stage-rail-label text-[9.5px] sm:text-[11.5px] font-medium text-text-muted group-hover:text-text-secondary transition-colors truncate block pb-1.5">
                   {tab.label}
                 </span>
                 <!-- Rail Track -->
-                <div class="w-full h-1.5 rounded-full bg-surface-soft overflow-hidden relative transition-all group-hover:bg-border-highlight">
+                <div class="w-full h-1 sm:h-1.5 rounded-full bg-surface-soft overflow-hidden relative transition-all group-hover:bg-border-highlight">
                   <!-- Animated Fill Bar -->
                   <div class="stage-rail-fill h-full bg-primary rounded-full origin-left scale-x-0 transition-transform"></div>
                 </div>
@@ -1103,28 +1103,46 @@ const tabsNav = t.stage.tabsNav;
       if (!stage || !tabsData[stage]) return;
       const data = tabsData[stage];
 
-      // Update progress rails
+      // Update progress rails and label typography
       railButtons.forEach((btn, i) => {
         const fill = btn.querySelector('.stage-rail-fill');
-        if (!fill) return;
+        const label = btn.querySelector('.stage-rail-label');
 
         if (i < currentIndex) {
-          fill.style.transitionDuration = '200ms';
-          fill.style.transform = 'scaleX(1)';
-          fill.classList.remove('bg-primary');
-          fill.classList.add('bg-text-muted', 'opacity-60');
-        } else if (i === currentIndex) {
-          fill.classList.remove('bg-text-muted', 'opacity-60');
-          fill.classList.add('bg-primary');
-          fill.style.transitionDuration = '0ms';
-          fill.style.transform = 'scaleX(0)';
-          requestAnimationFrame(() => {
-            fill.style.transitionDuration = `${ROTATION_DURATION}ms`;
+          if (fill) {
+            fill.style.transitionDuration = '200ms';
             fill.style.transform = 'scaleX(1)';
-          });
+            fill.classList.remove('bg-primary');
+            fill.classList.add('bg-text-muted', 'opacity-60');
+          }
+          if (label) {
+            label.classList.remove('text-text-primary', 'font-semibold');
+            label.classList.add('text-text-secondary', 'font-medium');
+          }
+        } else if (i === currentIndex) {
+          if (fill) {
+            fill.classList.remove('bg-text-muted', 'opacity-60');
+            fill.classList.add('bg-primary');
+            fill.style.transitionDuration = '0ms';
+            fill.style.transform = 'scaleX(0)';
+            requestAnimationFrame(() => {
+              fill.style.transitionDuration = `${ROTATION_DURATION}ms`;
+              fill.style.transform = 'scaleX(1)';
+            });
+          }
+          if (label) {
+            label.classList.remove('text-text-muted', 'text-text-secondary', 'font-medium');
+            label.classList.add('text-text-primary', 'font-semibold');
+          }
         } else {
-          fill.style.transitionDuration = '200ms';
-          fill.style.transform = 'scaleX(0)';
+          if (fill) {
+            fill.style.transitionDuration = '200ms';
+            fill.style.transform = 'scaleX(0)';
+          }
+          if (label) {
+            label.classList.remove('text-text-primary', 'text-text-secondary', 'font-semibold');
+            label.classList.add('text-text-muted', 'font-medium');
+          }
         }
       });
 
