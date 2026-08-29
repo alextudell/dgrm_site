@@ -24,96 +24,93 @@ let ruUrl = cleanPath.startsWith('/ru') ? cleanPath : (cleanPath === '/' ? '/ru'
   data-scrolled="false"
   data-menu-open="false"
 >
-  <!-- Top Navigation Bar Container -->
-  <div id="site-header-bar" class="site-header-bar relative z-50 w-full">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 sm:h-14 flex items-center justify-between">
-      <!-- Brand Logo -->
-      <a 
-        href={homeUrl} 
-        class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg py-1 pr-3 shrink-0"
-        aria-label="Diagram Home"
-      >
-        <img 
-          src="/assets/branding/Svg/diagram-mark-lavender.svg" 
-          alt="Diagram Mark" 
-          class="w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:scale-105"
-          width="28"
-          height="28"
-        />
-        <span class="font-bold text-base sm:text-lg tracking-tight text-text-primary group-hover:text-primary transition-colors">
-          Diagram
-        </span>
-      </a>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a 
+      href={homeUrl} 
+      class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg py-1 pr-3 shrink-0"
+      aria-label="Diagram Home"
+    >
+      <img 
+        src="/assets/branding/Svg/diagram-mark-lavender.svg" 
+        alt="Diagram Mark" 
+        class="w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:scale-105"
+        width="28"
+        height="28"
+      />
+      <span class="font-bold text-base sm:text-lg tracking-tight text-text-primary group-hover:text-primary transition-colors">
+        Diagram
+      </span>
+    </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-[13px] font-medium text-text-secondary tracking-normal">
-        <a href={`${homeUrl}#stage`} class="hover:text-text-primary transition-colors">{t.nav.stage}</a>
-        <a href={`${homeUrl}#ai`} class="hover:text-text-primary transition-colors">{t.nav.aiCoach}</a>
-        <a href={`${homeUrl}#ecosystem`} class="hover:text-text-primary transition-colors">{t.nav.ecosystem}</a>
-        <a href={`${homeUrl}#faq`} class="hover:text-text-primary transition-colors">{t.nav.faq}</a>
-      </nav>
+    <!-- Desktop Nav Links -->
+    <nav class="hidden md:flex items-center gap-8 text-[13px] sm:text-sm font-medium text-text-secondary tracking-normal">
+      <a href={`${homeUrl}#stage`} class="hover:text-text-primary transition-colors">{t.nav.stage}</a>
+      <a href={`${homeUrl}#ai`} class="hover:text-text-primary transition-colors">{t.nav.aiCoach}</a>
+      <a href={`${homeUrl}#ecosystem`} class="hover:text-text-primary transition-colors">{t.nav.ecosystem}</a>
+      <a href={`${homeUrl}#faq`} class="hover:text-text-primary transition-colors">{t.nav.faq}</a>
+    </nav>
 
-      <!-- Right Controls: Language Text + Theme Icon + Mobile Trigger -->
-      <div class="flex items-center gap-3 sm:gap-4">
-        <!-- Minimalist Text Language Switcher -->
-        <div class="flex items-center gap-1.5 text-[13px] leading-none font-medium tracking-normal select-none">
-          <a 
-            href={enUrl} 
-            data-lang-switch="en"
-            class={`transition-colors duration-150 py-0.5 ${lang === 'en' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
-            title="English"
-            aria-label="Switch to English"
-          >
-            EN
-          </a>
-          <span class="text-text-muted/30 text-xs font-light select-none -translate-y-px">/</span>
-          <a 
-            href={ruUrl} 
-            data-lang-switch="ru"
-            class={`transition-colors duration-150 py-0.5 ${lang === 'ru' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
-            title="Русский"
-            aria-label="Переключить на русский"
-          >
-            RU
-          </a>
-        </div>
-
-        <!-- Separator Hairline (Desktop) -->
-        <div class="hidden sm:block w-px h-3 bg-border-subtle"></div>
-
-        <!-- Minimalist Theme Toggle Button (Optically Aligned) -->
-        <button 
-          type="button" 
-          id="theme-toggle-btn"
-          aria-label={t.nav.themeToggle}
-          class="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 focus:outline-none active:scale-90 cursor-pointer"
+    <!-- Right Controls: Language Text + Theme Icon + Mobile Trigger -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <!-- Minimalist Text Language Switcher -->
+      <div class="flex items-center gap-1.5 text-[13px] leading-none font-medium tracking-normal select-none">
+        <a 
+          href={enUrl} 
+          data-lang-switch="en"
+          class={`transition-colors duration-150 py-0.5 ${lang === 'en' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
+          title="English"
+          aria-label="Switch to English"
         >
-          <!-- Moon Icon (Shown in Light Mode) -->
-          <svg class="w-4 h-4 dark:hidden fill-none stroke-current stroke-2 shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-          <!-- Sun Icon (Shown in Dark Mode) -->
-          <svg class="w-4 h-4 hidden dark:block fill-none stroke-current stroke-2 text-amber-300 shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-          </svg>
-        </button>
-
-        <!-- Mobile Menu Trigger (Apple-style 2-line Morphing Icon) -->
-        <button
-          type="button"
-          id="mobile-menu-btn"
-          aria-expanded="false"
-          aria-controls="mobile-nav-drawer"
-          aria-label="Toggle navigation menu"
-          class="md:hidden relative z-50 w-9 h-9 -mr-1 rounded-full flex items-center justify-center text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all focus:outline-none cursor-pointer"
+          EN
+        </a>
+        <span class="text-text-muted/30 text-xs font-light select-none -translate-y-px">/</span>
+        <a 
+          href={ruUrl} 
+          data-lang-switch="ru"
+          class={`transition-colors duration-150 py-0.5 ${lang === 'ru' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
+          title="Русский"
+          aria-label="Переключить на русский"
         >
-          <div class="w-4 h-3.5 flex flex-col justify-between items-center relative pointer-events-none">
-            <span id="burger-line-1" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
-            <span id="burger-line-2" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
-          </div>
-        </button>
+          RU
+        </a>
       </div>
+
+      <!-- Separator Hairline (Desktop) -->
+      <div class="hidden sm:block w-px h-3.5 bg-border-subtle"></div>
+
+      <!-- Minimalist Theme Toggle Button (Optically Aligned) -->
+      <button 
+        type="button" 
+        id="theme-toggle-btn"
+        aria-label={t.nav.themeToggle}
+        class="w-7 h-7 -translate-y-px rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 focus:outline-none active:scale-90 cursor-pointer"
+      >
+        <!-- Moon Icon (Shown in Light Mode) -->
+        <svg class="w-4 h-4 dark:hidden fill-none stroke-current stroke-2 shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+        <!-- Sun Icon (Shown in Dark Mode) -->
+        <svg class="w-4 h-4 hidden dark:inline fill-none stroke-current stroke-2 text-amber-300 shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+
+      <!-- Mobile Menu Trigger -->
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+        aria-label="Toggle navigation menu"
+        class="md:hidden relative z-50 w-8 h-8 rounded-full flex items-center justify-center text-text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all focus:outline-none cursor-pointer"
+      >
+        <div class="w-3.5 h-3 flex flex-col justify-between items-center relative pointer-events-none">
+          <span id="burger-line-1" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+          <span id="burger-line-2" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+        </div>
+      </button>
     </div>
   </div>
 

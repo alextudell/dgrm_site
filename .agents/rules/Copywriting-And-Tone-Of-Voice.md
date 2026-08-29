@@ -48,6 +48,15 @@ Frame inputs, fields, and tooltips around reflection, clarity, and intent rather
 * **Target date selection:** Instead of *"Deadline"*, use *"When do you want to arrive at this result?"*.
 * **Onboarding & Identity:** Frame initial setup as beginning a personal trajectory (*"Your name is the first step of your trajectory"*).
 
+### 5. Punctuation Standard: Headlines vs Subtitles
+Adhere strictly to modern Apple HIG and editorial typography rules:
+* **Headlines & Titles (H1, H2, H3, Hero Titles, CTA Headings, Card Titles):**
+  * **FORBIDDEN:** Trailing period at the end of the headline (`"От идеи до результата"` ✅, NOT `"От идеи до результата."` ❌).
+  * Multiple internal sentences within a headline may be separated by periods (`"Твой фокус. Твой темп. Твои результаты"`), but the final phrase must never have a trailing period.
+* **Subtitles, Descriptions & Body Text:**
+  * **MANDATORY:** If the subtitle/description is a full, grammatically complete sentence (e.g. `"Зафиксируй свои цели. Визуализируй свой путь."`), it **MUST** end with a period.
+  * Incomplete descriptor tags (e.g. `"Offline-First экосистема"`) do not take a trailing period.
+
 ---
 
 ## 📖 The Official Diagram Lexicon (Key Concepts)

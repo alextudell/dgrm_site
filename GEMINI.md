@@ -35,6 +35,9 @@
 7. **Strict Tailwind Spacing Standard:**
    * ONLY use standard Tailwind spacing scale (`p-4`, `p-5`, `p-6`, `gap-3`, `gap-4`) or explicit bracket notation (`p-[18px]`).
    * **FORBIDDEN:** Fractional classes that do not exist in default Tailwind (`py-4.5`, `p-3.5`) which silently fail to `padding: 0`.
+8. **Typography & Punctuation Law (Headlines vs Subtitles):**
+   * **Headlines & Titles (H1, H2, H3, Hero, CTAs):** **NEVER** place a trailing period at the end of a headline or title (`"От идеи до результата"` ✅, NOT `"От идеи до результата."` ❌). Intra-title periods separating distinct phrases (`"Твой фокус. Твой темп. Твои результаты"`) are permitted, but the final character must never be a period.
+   * **Subtitles & Body Descriptions:** Complete grammatical sentences **MUST** end with a period (`"Зафиксируй свои цели. Визуализируй свой путь."` ✅). Short incomplete descriptor tags omit periods.
 
 ---
 

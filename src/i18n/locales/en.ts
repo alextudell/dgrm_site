@@ -24,7 +24,7 @@ export const en = {
   hero: {
     badge: "✦ Closed Beta Test",
     titleLine1: "Turn ideas",
-    titleHighlight: "into results.",
+    titleHighlight: "into results",
     subtitle: "Define your goals. Visualize your trajectory.",
     joinBeta: "Join Beta Testing",
     iosWaitlist: "Get iOS Access",
@@ -32,7 +32,7 @@ export const en = {
   },
   stage: {
     eyebrow: "How It Works",
-    title: "One Unbroken Loop. Zero Clutter.",
+    title: "One Unbroken Loop. Zero Clutter",
     subtitle: "Switch between tabs to see how Diagram guides you from initial ideas to quiet, steady execution.",
     tabsNav: {
       overview: "Overview",
@@ -274,7 +274,7 @@ export const en = {
   cta: {
     badge: "Closed Beta",
     title: "Your Focus. Your Pace.",
-    highlight: "Your Results.",
+    highlight: "Your Results",
     subtitle: "Join the closed beta to test Diagram in action and help shape the future of the instrument.",
     betaButton: "Join Beta Testing",
     iosButton: "Get iOS Access",
