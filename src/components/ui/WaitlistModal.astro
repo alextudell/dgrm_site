@@ -1,5 +1,6 @@
 ---
 import type { Translations, SupportedLanguage } from '../../i18n/translations';
+import { EXTERNAL_LINKS } from '../../config/links';
 
 interface Props {
   t: Translations;
@@ -111,7 +112,9 @@ const { t } = Astro.props;
       <div class="pt-3 border-t border-border-subtle text-center text-xs text-text-muted flex items-center justify-center gap-1.5">
         <span>{t.waitlistModal.altAndroidText}</span>
         <a 
-          href="mailto:support@dgrm.app?subject=Google%20Play%20Beta%20Access%20Request" 
+          href={EXTERNAL_LINKS.googleGroupBeta}
+          target="_blank"
+          rel="noopener noreferrer"
           class="font-semibold text-primary hover:underline hover:text-indigo-400 transition-colors"
         >
           {t.waitlistModal.altAndroidLink}

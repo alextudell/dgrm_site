@@ -1,5 +1,6 @@
 ---
 import type { Translations, SupportedLanguage } from '../../i18n/translations';
+import { EXTERNAL_LINKS } from '../../config/links';
 
 interface Props {
   t: Translations;
@@ -8,6 +9,13 @@ interface Props {
 
 const { t, lang } = Astro.props;
 const homeUrl = lang === 'ru' ? '/ru' : '/';
+
+// Compute reciprocal localized URLs for the language switcher
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.length > 1 && currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+let enUrl = cleanPath.startsWith('/ru') ? (cleanPath.replace(/^\/ru(\/|$)/, '/') || '/') : cleanPath;
+if (!enUrl.startsWith('/')) enUrl = '/' + enUrl;
+let ruUrl = cleanPath.startsWith('/ru') ? cleanPath : (cleanPath === '/' ? '/ru' : `/ru${cleanPath}`);
 ---
 
 <header 
@@ -50,7 +58,8 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
         <!-- Minimalist Text Language Switcher -->
         <div class="flex items-center gap-1.5 text-[13px] leading-none font-medium tracking-normal select-none">
           <a 
-            href="/" 
+            href={enUrl} 
+            data-lang-switch="en"
             class={`transition-colors duration-150 py-0.5 ${lang === 'en' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
             title="English"
             aria-label="Switch to English"
@@ -59,7 +68,8 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
           </a>
           <span class="text-text-muted/30 text-xs font-light select-none -translate-y-px">/</span>
           <a 
-            href="/ru" 
+            href={ruUrl} 
+            data-lang-switch="ru"
             class={`transition-colors duration-150 py-0.5 ${lang === 'ru' ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-secondary'}`}
             title="Русский"
             aria-label="Переключить на русский"
@@ -200,7 +210,9 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
       <!-- Primary Conversion CTA (Android default) -->
       <a
         id="drawer-cta-android"
-        href="mailto:support@dgrm.app?subject=Google%20Play%20Beta%20Access%20Request"
+        href={EXTERNAL_LINKS.googleGroupBeta}
+        target="_blank"
+        rel="noopener noreferrer"
         class="mobile-nav-link w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl btn-velvet-primary text-white font-semibold text-sm shadow-md active:scale-95 transition-transform"
       >
         <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
@@ -269,6 +281,17 @@ const homeUrl = lang === 'ru' ? '/ru' : '/';
         }
       });
     }
+
+    // Language Switch Listener (Stores explicit user selection)
+    const langSwitchLinks = document.querySelectorAll('[data-lang-switch]');
+    langSwitchLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        const targetLang = link.getAttribute('data-lang-switch');
+        if (targetLang) {
+          localStorage.setItem('user_lang_selected', targetLang);
+        }
+      });
+    });
 
     // Mobile Menu Drawer
     if (!menuBtn || !drawer) return;

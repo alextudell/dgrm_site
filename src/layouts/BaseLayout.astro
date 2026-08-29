@@ -46,9 +46,16 @@ const ogImageURL = new URL(image, Astro.site || 'https://dgrm.app');
     {lang === 'en' && (
       <script is:inline>
         (function() {
-          const userHasSetLang = localStorage.getItem('user_lang_selected');
+          const userLang = localStorage.getItem('user_lang_selected');
           const isRoot = window.location.pathname === '/' || window.location.pathname === '';
-          if (!userHasSetLang && isRoot) {
+          if (isRoot) {
+            if (userLang === 'ru') {
+              window.location.replace('/ru');
+              return;
+            }
+            if (userLang === 'en') {
+              return;
+            }
             const browserLang = navigator.language || navigator.userLanguage || '';
             if (browserLang.toLowerCase().startsWith('ru')) {
               window.location.replace('/ru');

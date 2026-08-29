@@ -1,5 +1,6 @@
 ---
 import type { Translations, SupportedLanguage } from '../../i18n/translations';
+import { EXTERNAL_LINKS } from '../../config/links';
 
 interface Props {
   t: Translations;
@@ -44,8 +45,8 @@ const currentYear = new Date().getFullYear();
         {t.nav.terms}
       </a>
       <span class="text-text-muted select-none opacity-60">•</span>
-      <a href="mailto:support@dgrm.app" class="hover:text-primary transition-colors">
-        support@dgrm.app
+      <a href={EXTERNAL_LINKS.mailtoSupport} class="hover:text-primary transition-colors">
+        {EXTERNAL_LINKS.supportEmail}
       </a>
     </div>
 
